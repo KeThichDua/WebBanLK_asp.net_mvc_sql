@@ -1,0 +1,17 @@
+usecase
+database
+giao diện
+demo
+phân công công việc
+khảo sát hệ thống
+thiết kế chức năng
+ưu nhược trước khi có phần mềm(tại sao phải cần phần mềm này)
+tiếng anh , tiếng việt chỉ có 1
+phân rõ user( khách vãng lai,khách mới khách quen, khách vip)
+mật khẩu mã hóa
+reset khi người dùng quên mật khẩu
+nhập kho , xuất kho, tình trạng sản phẩm,...
+ví dụ thực hiện chức năng bán, nhập sản phẩm lời lãi thế nào( báo cáo truy vấn)
+demo
+thanh toán 
+kh
