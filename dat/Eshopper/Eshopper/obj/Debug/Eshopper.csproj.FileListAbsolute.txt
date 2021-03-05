@@ -156,3 +156,7 @@ F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\rosly
 F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\roslyn\vbc.rsp
 F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\roslyn\VBCSCompiler.exe
 F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\roslyn\VBCSCompiler.exe.config
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\EntityFramework.dll
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\EntityFramework.SqlServer.dll
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\EntityFramework.xml
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\EntityFramework.SqlServer.xml

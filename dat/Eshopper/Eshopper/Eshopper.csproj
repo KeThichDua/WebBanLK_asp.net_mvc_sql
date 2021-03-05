@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -137,6 +143,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EF\Admin.cs" />
+    <Compile Include="Models\EF\BangKhuyenMai.cs" />
+    <Compile Include="Models\EF\BinhLuan.cs" />
+    <Compile Include="Models\EF\CTGioHang.cs" />
+    <Compile Include="Models\EF\CTPhieuNhap.cs" />
+    <Compile Include="Models\EF\CTPhieuXuat.cs" />
+    <Compile Include="Models\EF\DBModels.cs" />
+    <Compile Include="Models\EF\GioHang.cs" />
+    <Compile Include="Models\EF\LoaiND.cs" />
+    <Compile Include="Models\EF\LoaiSP.cs" />
+    <Compile Include="Models\EF\NguoiDung.cs" />
+    <Compile Include="Models\EF\NhaCC.cs" />
+    <Compile Include="Models\EF\PhieuNhap.cs" />
+    <Compile Include="Models\EF\PhieuXuat.cs" />
+    <Compile Include="Models\EF\SanPham.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2157,9 +2178,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Admin\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
