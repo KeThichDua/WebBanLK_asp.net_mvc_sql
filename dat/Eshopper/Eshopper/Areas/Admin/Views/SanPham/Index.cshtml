@@ -1,113 +1,86 @@
-﻿
+﻿@model List<Eshopper.Models.EF.SanPham>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
 }
 
-<style type="text/css">
-    .styled-table {
-        border-collapse: collapse;
-        margin: auto;
+<style>
+    #titleadmin {
+        margin-left: 1%;
+        margin-bottom: 1%;
+        font-family: sans-serif;
+        color: #4e73df;
+        font: bold;
+    }
+    #customers {
         font-size: 0.9em;
         font-family: sans-serif;
-        min-width: 90%;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        margin-top: 15px;
+        border-collapse: collapse;
+        width: 100%;
+        margin-left: 1%;
+       
     }
 
-    .styled-table thead tr {
-            background-color: #009879;
-            color: #ffffff;
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
             text-align: left;
-    }
-
-        .styled-table th,
-        .styled-table td {
-            padding: 12px 15px;
+            /* background-color: #009879;*/
+            background-color: #4e73df;
+            color: white;
         }
-
-        .styled-table tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
-
-            .styled-table tbody tr:nth-of-type(even) {
-                background-color: #f3f3f3;
-            }
-
-            .styled-table tbody tr:last-of-type {
-                border-bottom: 2px solid #009879;
-            }
-
-            .styled-table tbody tr.active-row {
-                font-weight: bold;
-                color: #009879;
-            }
 </style>
+</head>
+<body>
+    <div id="titleadmin">QUẢN LÝ SẢN PHẨM</div>
 
-<div padding-left: 15px>Quản lí sản phẩm</div>
-
-<table class="styled-table">
-    <thead>
+    <table id="customers">
         <tr>
-            <th>Name</th>
-            <th>Points</th>
+            <th>Mã sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Mô tả</th>
+            <th>Giá khuyến mãi</th>
+            <th>Ảnh</th>
+            <th>Mã loại SP</th>
+            <th>Mã khuyến mãi</th>
+            @*<th style="width:5%"></th>*@
+            <th style="width:80px"><img src="~/Assets/images/icons/add.png" style="margin-left:30%" /></th>
         </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Dom</td>
-            <td>6000</td>
-        </tr>
-        <tr class="active-row">
-            <td>Melissa</td>
-            <td>5150</td>
-        </tr>
-        <!-- and so on... -->
-    </tbody>
-</table>
-
-@*<table id=" = "sanphamTable" class="display">
-        <thead>
+        @foreach (Eshopper.Models.EF.SanPham item in Model)
+        {
             <tr>
-                <th>Mã sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Mô tả</th>
-                <th>Giá khuyến mãi</th>
-                <th>Ảnh</th>
-                <th>Mã loại sản phẩm</th>
-                <th>Mã khuyễn mãi</th>
+                <td>@item.MaSP</td>
+                <td>@item.TenSP</td>
+                <td>@item.SoLuong</td>
+                <td>@item.DonGia</td>
+                <td>@item.MoTa</td>
+                <td>@item.MaKM</td>
+                <td href="@item.URLAnh"></td>
+                <td>@item.MaLoaiSP</td>
+                <td>@item.MaKM</td>
+                <td >
+                <img src="~/Assets/images/icons/edit.png" style="margin-left:12%; margin-right:10%"/>
+                <img src="~/Assets/images/icons/delete.png" />
+                </td>
+                @*<td colspan="2"><img src="~/Assets/images/icons/delete.png" /></td>*@
             </tr>
-        </thead>
+        }
     </table>
 
-    <link href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet"/>
-
-    @section scripts
-        {
-            <script src ="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-
-            <script>
-                    $(documment).ready(function () {
-                        $("#sanphamTable").DataTable({
-                            "ajax": {
-                                "url": "/SanPham/GetData",
-                                "type": "GET",
-                                "datatype":"json"
-                            },
-                            "columns": [
-                                { "data": "Mã sản phẩm" },
-                                { "data": "Tên sản phẩm" },
-                                { "data": "Số lượng" },
-                                { "data": "Đơn giá" },
-                                { "data": "Mô tả" },
-                                { "data": "Giá khuyến mãi" },
-                                { "data": "Ảnh" },
-                                { "data": "Mã loại sản phẩm" },
-                                { "data": "Mã khuyễn mãi" }
-                            ]
-                        });
-                    });
-            </script>
-        }*@
+    

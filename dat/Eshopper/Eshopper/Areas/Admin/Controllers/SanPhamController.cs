@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Eshopper.Models;
+using Eshopper.Models.Dao;
+using Eshopper.Models.EF;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
@@ -13,7 +15,9 @@ namespace Eshopper.Areas.Admin.Controllers
         // GET: Admin/SanPham
         public ActionResult Index()
         {
-            return View();
+            SanPhamDAO db = new SanPhamDAO();
+            List <SanPham> listsp = db.GetListSanPham();
+            return View(listsp);
         }
 
         //public ActionResult GetData()

@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dao\SanPhamDAO.cs" />
     <Compile Include="Models\EF\Admin.cs" />
     <Compile Include="Models\EF\BangKhuyenMai.cs" />
     <Compile Include="Models\EF\BinhLuan.cs" />
@@ -1930,6 +1931,9 @@
     <Content Include="Assets\images\home\sp7.jpg" />
     <Content Include="Assets\images\home\sp8.jpg" />
     <Content Include="Assets\images\home\sp9.jpg" />
+    <Content Include="Assets\images\icons\add.png" />
+    <Content Include="Assets\images\icons\delete.png" />
+    <Content Include="Assets\images\icons\edit.png" />
     <Content Include="Assets\images\product-details\1.jpg" />
     <Content Include="Assets\images\product-details\new.jpg" />
     <Content Include="Assets\images\product-details\rating.png" />
