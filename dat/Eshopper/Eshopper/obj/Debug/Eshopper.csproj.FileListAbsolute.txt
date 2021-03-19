@@ -160,3 +160,9 @@ F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\Entit
 F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\EntityFramework.SqlServer.dll
 F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\EntityFramework.xml
 F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\EntityFramework.SqlServer.xml
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\HomeBi.Libraries.PagedList.dll
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\HomeBi.Libraries.PagedList.xml
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\PagedList.dll
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\PagedList.Mvc.dll
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\PagedList.xml
+F:\Code\BTLClientServer\WebBanLK_asp.net_mvc_sql\dat\Eshopper\Eshopper\bin\PagedList.Mvc.xml

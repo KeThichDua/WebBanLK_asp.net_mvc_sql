@@ -1,4 +1,4 @@
-namespace Eshopper.Models.EF
+﻿namespace Eshopper.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -20,23 +20,25 @@ namespace Eshopper.Models.EF
 
         [Key]
         [StringLength(10)]
+        [Display(Name = "Mã sản phẩm")]
         public string MaSP { get; set; }
 
+        [Display(Name = "Tên sản phẩm")]
         public string TenSP { get; set; }
-
+        [Display(Name = "Số lượng")]
         public int? SoLuong { get; set; }
-
+        [Display(Name = "Đơn giá")]
         public int? DonGia { get; set; }
-
+        [Display(Name = "Mô tả")]
         public string MoTa { get; set; }
-
+        [Display(Name = "Giá khuyến mãi")]
         public int? GiaKM { get; set; }
-
+        [Display(Name = "URL ảnh")]
         public string URLAnh { get; set; }
-
+        [Display(Name = "Mã loại sản phẩm")]
         [StringLength(10)]
         public string MaLoaiSP { get; set; }
-
+        [Display(Name = "Mã khuyến mãi")]
         [StringLength(10)]
         public string MaKM { get; set; }
 

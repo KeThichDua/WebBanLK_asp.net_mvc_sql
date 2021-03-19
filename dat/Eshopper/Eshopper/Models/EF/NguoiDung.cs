@@ -1,4 +1,4 @@
-namespace Eshopper.Models.EF
+﻿namespace Eshopper.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -18,6 +18,7 @@ namespace Eshopper.Models.EF
 
         [Key]
         [StringLength(10)]
+        [Display(Name = "Mã người dùng")]
         public string MaND { get; set; }
 
         [StringLength(50)]

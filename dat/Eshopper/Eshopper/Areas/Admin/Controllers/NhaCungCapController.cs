@@ -1,23 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Eshopper.Models.EF;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
     public class NhaCungCapController : Controller
     {
+        private DBModels db = new DBModels();
+
         // GET: Admin/NhaCungCap
         public ActionResult Index()
         {
-            return View();
+            return View(db.NhaCCs.ToList());
         }
 
         // GET: Admin/NhaCungCap/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            NhaCC nhaCC = db.NhaCCs.Find(id);
+            if (nhaCC == null)
+            {
+                return HttpNotFound();
+            }
+            return View(nhaCC);
         }
 
         // GET: Admin/NhaCungCap/Create
@@ -27,63 +42,86 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // POST: Admin/NhaCungCap/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "MaNCC,Ten,DiaChi,SDT,Email")] NhaCC nhaCC)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                db.NhaCCs.Add(nhaCC);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(nhaCC);
         }
 
         // GET: Admin/NhaCungCap/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            NhaCC nhaCC = db.NhaCCs.Find(id);
+            if (nhaCC == null)
+            {
+                return HttpNotFound();
+            }
+            return View(nhaCC);
         }
 
         // POST: Admin/NhaCungCap/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "MaNCC,Ten,DiaChi,SDT,Email")] NhaCC nhaCC)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(nhaCC).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(nhaCC);
         }
 
         // GET: Admin/NhaCungCap/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            NhaCC nhaCC = db.NhaCCs.Find(id);
+            if (nhaCC == null)
+            {
+                return HttpNotFound();
+            }
+            return View(nhaCC);
         }
 
         // POST: Admin/NhaCungCap/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            NhaCC nhaCC = db.NhaCCs.Find(id);
+            db.NhaCCs.Remove(nhaCC);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                return View();
+                db.Dispose();
             }
+            base.Dispose(disposing);
         }
     }
 }

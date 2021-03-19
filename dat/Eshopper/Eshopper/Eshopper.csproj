@@ -46,12 +46,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HomeBi.Libraries.PagedList, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HomeBi.Libraries.PagedList.1.0.0\lib\netstandard2.0\HomeBi.Libraries.PagedList.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -129,10 +138,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\LoaiSanPhamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoaiSPsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MainAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaCungCapController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamsController.cs" />
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
@@ -143,6 +153,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dao\LoaiSanPhamDAO.cs" />
+    <Compile Include="Models\Dao\NhaCungCapDAO.cs" />
     <Compile Include="Models\Dao\SanPhamDAO.cs" />
     <Compile Include="Models\EF\Admin.cs" />
     <Compile Include="Models\EF\BangKhuyenMai.cs" />
@@ -162,6 +174,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\AssetAdmin\css\crudadmin.css" />
     <Content Include="Areas\AssetAdmin\css\sb-admin-2.css" />
     <Content Include="Areas\AssetAdmin\css\sb-admin-2.min.css" />
     <Content Include="Areas\AssetAdmin\img\undraw_posting_photo.svg" />
@@ -1848,6 +1861,7 @@
     <Content Include="Assets\css\animate.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\font-awesome.min.css" />
+    <Content Include="Areas\AssetAdmin\css\indexadmin.css" />
     <Content Include="Assets\css\main.css" />
     <Content Include="Assets\css\prettyPhoto.css" />
     <Content Include="Assets\css\price-range.css" />
@@ -1961,6 +1975,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1972,7 +1987,6 @@
     <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_MainLayoutAdmin.cshtml" />
-    <Content Include="Areas\Admin\Views\NhaCungCap\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MainAdmin\Index.cshtml" />
     <Content Include="Areas\AssetAdmin\scss\navs\_global.scss" />
     <Content Include="Areas\AssetAdmin\scss\navs\_sidebar.scss" />
@@ -2146,8 +2160,26 @@
     <Content Include="Areas\AssetAdmin\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Areas\AssetAdmin\vendor\jquery\jquery.min.map" />
     <Content Include="Areas\AssetAdmin\vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Areas\Admin\Views\LoaiSanPham\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NguoiDungs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaCungCap\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPhams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSPs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSPs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSPs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSPs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSPs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
