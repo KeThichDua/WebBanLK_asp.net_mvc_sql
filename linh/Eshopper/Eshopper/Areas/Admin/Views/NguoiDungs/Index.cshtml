@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Eshopper.Models.EF.NguoiDung>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<link href="~/Areas/AssetAdmin/css/indexadmin.css" rel="stylesheet" type="text/css">
+
+
+
+    <div id="titleadmin">QUẢN LÝ NGƯỜI DÙNG</div>
+
+    
+    <table class="table" id="customers">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaND)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiND.TenLoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GioiTinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tuoi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Pass)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.TenND)
+            </th>
+
+            @*<th style="width:80px">
+                <a href="@Url.Action("Create", "NguoiDungs")"><img src="~/Assets/images/icons/add.png" style="margin-left:35%" /></a>
+            </th>*@
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.MaND)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiND.TenLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioiTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tuoi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Pass)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.TenND)
+            </td>
+            <td>
+                @*<div>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MaND }) |
+        </div>*@
+
+                @*@Html.ActionLink("Details", "Details", new { id = item.MaND }) |*@
+                @*@Html.ActionLink("Xóa", "Delete", new { id = item.MaND.Replace(" ", string.Empty) })*@
+
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaND.Replace(" ", string.Empty) })
+
+                @*<a href="@Url.Action("Edit", "NguoiDungs")">
+            <img src="~/Assets/images/icons/edit.png" style="margin-left:15%; margin-right:10%" />
+        </a>
+        <a href="@Url.Action("Delete", "LoaiSanPham")">
+            <img src="~/Assets/images/icons/delete.png" />
+        </a>*@
+            </td>
+        </tr>
+        }
+
+    </table>

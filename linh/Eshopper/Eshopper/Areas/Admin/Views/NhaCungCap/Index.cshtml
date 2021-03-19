@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Eshopper.Models.EF.NhaCC>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<link href="~/Areas/AssetAdmin/css/indexadmin.css" rel="stylesheet" type="text/css">
+
+
+
+<div id="titleadmin">QUẢN LÝ NHÀ CUNG CẤP</div>
+
+@*<p>
+        @Html.ActionLink("", "Create")
+    </p>*@
+<table class="table" id="customers">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaNCC)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th style="width:80px">
+            <a href="@Url.Action("Create", "NhaCungCap")"><img src="~/Assets/images/icons/add.png" style="margin-left:35%" /></a>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaNCC)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaNCC.Replace(" ", string.Empty)}) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.MaNCC }) |*@
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaNCC.Replace(" ", string.Empty) })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="row" style="margin: auto">
+    @*<div class="col-sm-12 col-md-5">
+            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 41 to 50 of 57 entries</div>
+        </div>*@
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+            <ul class="pagination">
+                <li class="paginate_button page-item previous" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
+                <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
