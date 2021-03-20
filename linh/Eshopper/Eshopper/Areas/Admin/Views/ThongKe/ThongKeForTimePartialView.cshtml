@@ -1,0 +1,174 @@
+﻿@using Eshopper.Models.ViewModels;
+@model ThongKeViewModel
+
+
+
+<div class="container-fluid">
+    <div class="mt-4">
+        <h2>
+            Thống kê nhập
+        </h2>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Mã Phiếu nhập</th>
+                    <th>Tên nhà cung cấp</th>
+                    <th>Số sản phẩm nhập</th>
+                    <th>Số tiền nhập hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.TKNhaps.Count() > 0)
+                {
+                    foreach (var item in Model.TKNhaps)
+                    {
+                        <tr>
+                            <td>
+                                @item.MaPN
+                            </td>
+                            <td>
+                                @item.TenNCC
+                            </td>
+                            <td>
+                                @item.TotalQuantities
+                            </td>
+                            <td>@item.TotalPrices.ToString("#,##")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4">
+        <h2>
+            Thống kê Xuất
+        </h2>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Mã phiếu xuất</th>
+                    <th>Tên người mua</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Ngày ship</th>
+                    <th>Số sản phẩm nhập</th>
+                    <th>Số tiền nhập hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.TKNhaps.Count() > 0)
+                {
+                    foreach (var item in Model.TKXuats)
+                    {
+                        <tr>
+                            <td>
+                                @item.MaPX
+                            </td>
+                            <td>
+                                @item.TenND
+                            </td>
+                            <td>
+                                @if (item.NgayDat != null)
+                                {
+                                    <span>
+                                        @item.NgayDat.Value.ToString("dd/MM/yyyy")
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.NgayShip != null)
+                                {
+                                    <span>
+                                        @item.NgayShip.Value.ToString("dd/MM/yyyy")
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @item.TotalQuantities
+                            </td>
+                            <td>@item.TotalPrices.ToString("#,##")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4">
+        <h2>
+            Thống kê top @Model.TKTopSanPhams.Count() sản phẩm bán chạy nhất
+        </h2>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số sản phẩm xuất</th>
+                    <th>Số tiền thu</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.TKNhaps.Count() > 0)
+                {
+                    foreach (var item in Model.TKTopSanPhams)
+                    {
+                        <tr>
+                            <td>
+                                @item.MaSP
+                            </td>
+                            <td>
+                                @item.TenSP
+                            </td>
+                            <td>
+                                @item.TotalQuantities
+                            </td>
+                            <td>
+                                @item.TotalPrices.ToString("#,##")
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4">
+        <h2>
+            Thống kê xuất theo người dùng
+        </h2>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Tên người dùng</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Số sản phẩm mua</th>
+                    <th>Số tiền chi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.TKNhaps.Count() > 0)
+                {
+                    foreach (var item in Model.TKXuatTheoUsers)
+                    {
+                        <tr>
+                            <td>
+                                @item.TenND
+                            </td>
+                            <td>
+                                @item.SDT
+                            </td>
+                            <td>
+                                @item.DiaChi
+                            </td>
+                            <td>
+                                @item.TotalQuantities
+                            </td>
+                            <td>
+                                @item.TotalPrices.ToString("#,##")
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

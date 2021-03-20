@@ -1,14 +1,7 @@
-﻿@model IEnumerable<Eshopper.Models.EF.SanPham>
+﻿@using Eshopper.Models.EF;
+@using PagedList.Mvc;
 
-@*@model PagedList.IPagedList<Eshopper.Models.EF.SanPham>
-@using PagedList.Mvc;*@
-
-@*@model PagedList.IPagedList<SanPham>
-    @using PagedList.Mvc*@
-
-
-
-
+@model PagedList.IPagedList<SanPham>
 
 @{
     ViewBag.Title = "Index";
@@ -16,12 +9,10 @@
 }
 
 <link href="~/Areas/AssetAdmin/css/indexadmin.css" rel="stylesheet" type="text/css">
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
-
-
-<div id="titleadmin">QUẢN LÝ SẢN PHẨM</div>
-
-<div >
+<div class="container-fluid">
+    <div id="titleadmin">QUẢN LÝ SẢN PHẨM</div>
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" style="padding-bottom:1%; padding-left:75%">
         <div class="input-group">
             <input id="searchString" name="searchString" type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..."
@@ -34,55 +25,18 @@
         </div>
     </form>
 
-    @*<p>
-            Category: @Html.DropDownList("MaLoaiSP", "All") <input type="submit" value="Tìm kiếm" />
-        </p>*@
-
-    <table class="table" id="customers">
-
-
-      
+    <table class="table table-bordered table-striped" id="customers">
         <tr>
 
             <th>Mã sản phẩm</th>
-                <th>Mã khuyến mãi</th>
-                <th>Tên loại sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Mô tả</th>
-                <th>Giá khuyến mãi</th>
-                <th>URL ảnh</th>
-
-            @*<th>
-                @Html.DisplayNameFor(model => model.MaSP)
-            </th>
-
-
-            <th>
-                @Html.DisplayNameFor(model => model.TenSP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LoaiSP.TenLoai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoLuong)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DonGia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MoTa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GiaKM)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BangKhuyenMai.MaKM)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.URLAnh)
-            </th>*@
+            <th>Mã khuyến mãi</th>
+            <th>Tên loại sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Mô tả</th>
+            <th>Giá khuyến mãi</th>
+            <th>URL ảnh</th>
             <th style="width:80px">
                 <a href="@Url.Action("Create", "SanPhams")"><img src="~/Assets/images/icons/add.png" style="margin-left:35%" /></a>
             </th>
@@ -92,20 +46,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>@item.MaSP</td>
-                    <td>@item.MaKM</td>
-                    <td>@item.MaLoaiSP</td>
-                    <td>@item.TenSP</td>
-                    <td>@item.SoLuong</td>
-                    <td>@item.DonGia</td>
-                    <td>@item.MoTa</td>
-                    <td>@item.GiaKM</td>
-                    <td>@item.URLAnh</td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.MaSP)
                 </td>
-
-
                 <td>
                     @Html.DisplayFor(modelItem => item.TenSP)
                 </td>
@@ -128,61 +71,26 @@
                     @Html.DisplayFor(modelItem => item.BangKhuyenMai.MaKM)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.URLAnh)
+                    @if (item.URLAnh != null)
+                    {
+                        <img src="@Path.Combine(item.URLAnh)" class="img-thumbnail" />
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP.Replace(" ", string.Empty) }) |
-                    @*@Html.ActionLink("Details", "Details", new { id = item.MaNCC }) |*@
                     @Html.ActionLink("Xóa", "Delete", new { id = item.MaSP.Replace(" ", string.Empty) })
 
-                    @*@Html.ActionLink("Sửa", "Edit", new { id = item.MaSP })*@
-                    @*<img src="~/Assets/images/icons/edit.png" style="margin-left:15%; margin-right:10%" />
-                        </a>*@ |
-                    @*@Html.ActionLink("Details", "Details", new { id = item.MaSP }) |*@
-                    @*@Html.ActionLink("Xóa", "Delete", new { id = item.MaSP })*@
                 </td>
             </tr>
         }
 
-
-
-
-
     </table>
-    @*</div>
+    @if (Model.PageCount > 1)
+    {
+        <div class="text-right">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
-        <br />
-            <div class="row">
+        </div>
+    }
 
-                <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
-                    Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-                </div>
-            </div>
-
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
-
-        @*<br />
-            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
-
-        <!--<div class="row" style="margin: auto">
-            <div class="col-sm-12 col-md-5">
-                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 41 to 50 of 57 entries</div>
-            </div>
-            <div class="col-sm-12 col-md-7">
-                <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                    <ul class="pagination">-->
-        @*<li class="paginate_button page-item previous" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-            <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-            <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>*@
-
-        <!--<li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>-->
+</div>

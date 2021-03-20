@@ -25,7 +25,9 @@ namespace Eshopper.Models.EF
         public virtual DbSet<NhaCC> NhaCCs { get; set; }
         public virtual DbSet<PhieuNhap> PhieuNhaps { get; set; }
         public virtual DbSet<PhieuXuat> PhieuXuats { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -161,6 +163,12 @@ namespace Eshopper.Models.EF
                 .IsFixedLength()
                 .IsUnicode(false);
 
+            modelBuilder.Entity<NguoiDung>()
+                .HasMany(e => e.UserRoles)
+                .WithRequired(e => e.NguoiDung)
+                .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<NhaCC>()
                 .Property(e => e.MaNCC)
                 .IsFixedLength()
@@ -204,6 +212,15 @@ namespace Eshopper.Models.EF
                 .WithRequired(e => e.PhieuXuat)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Role>()
+                .Property(e => e.Code)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Role>()
+                .HasMany(e => e.UserRoles)
+                .WithRequired(e => e.Role)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<SanPham>()
                 .Property(e => e.MaSP)
                 .IsFixedLength()
@@ -237,8 +254,11 @@ namespace Eshopper.Models.EF
                 .HasMany(e => e.CTPhieuXuats)
                 .WithRequired(e => e.SanPham)
                 .WillCascadeOnDelete(false);
-        }
 
-        public System.Data.Entity.DbSet<Eshopper.Models.EF.SPBanChay> SPBanChays { get; set; }
+            modelBuilder.Entity<UserRole>()
+                .Property(e => e.UserId)
+                .IsFixedLength()
+                .IsUnicode(false);
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Eshopper.Models.EF
+namespace Eshopper.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -14,11 +14,11 @@
         {
             BinhLuans = new HashSet<BinhLuan>();
             PhieuXuats = new HashSet<PhieuXuat>();
+            UserRoles = new HashSet<UserRole>();
         }
 
         [Key]
         [StringLength(10)]
-        [Display(Name = "Mã người dùng")]
         public string MaND { get; set; }
 
         [StringLength(50)]
@@ -45,6 +45,9 @@
 
         public string TenND { get; set; }
 
+        [StringLength(250)]
+        public string MatKhau { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuans { get; set; }
 
@@ -52,5 +55,8 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuXuat> PhieuXuats { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

@@ -1,0 +1,74 @@
+﻿@using Eshopper.Models.EF;
+@model IEnumerable<PhieuNhap>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <h2>Danh sách phiếu nhập</h2>
+
+    <p>
+        <a href="@Url.Action("CreateForNhaCC")" class="btn btn-outline-primary">
+            Tạo mới phiếu nhập
+        </a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NhaCC.Ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayNhap)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="row-@item.MaPN.TrimEnd()">
+                <td>
+                    @Html.DisplayFor(modelItem => item.NhaCC.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayNhap)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", new {  maPN = item.MaPN.TrimEnd() })" class="btn btn-outline-secondary">
+                        Chi tiết
+                    </a>
+                    <a href="@Url.Action("Update", new {  maPN = item.MaPN.TrimEnd() })" class="btn btn-outline-secondary">
+                        Cập nhập
+                    </a>
+                    <button type="button" class="btn btn-outline-danger ml-2" onclick="DeletePhieuNhap('@item.MaPN.TrimEnd()')">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section scripts{
+    <script>
+        function DeletePhieuNhap(maPN) {
+            if (confirm("Bạn có chắc muốn xóa liên hệ đã chọn không?")) {
+                $.ajax({
+                    type: "Post",
+                    url: "/Admin/QuanLyPhieuNhap/DeletePhieuNhap",
+                    data: { maPN: maPN },
+                    success: function (res) {
+                        if (res) {
+                            alert("Xóa thành công!");
+                            $("#row-" + maPN).fadeOut();
+                        }
+                        else {
+                            alert("Bị lỗi!");
+                        }
+                    }
+                })
+            }
+        }
+    </script>    
+}

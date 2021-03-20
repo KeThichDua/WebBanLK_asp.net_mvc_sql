@@ -19,9 +19,9 @@ namespace Eshopper.Models.EF
         [StringLength(10)]
         public string MaSP { get; set; }
 
-        public int? SoLuong { get; set; }
+        public int SoLuong { get; set; }
 
-        public int? DonGia { get; set; }
+        public int DonGia { get; set; }
 
         public virtual PhieuNhap PhieuNhap { get; set; }
 

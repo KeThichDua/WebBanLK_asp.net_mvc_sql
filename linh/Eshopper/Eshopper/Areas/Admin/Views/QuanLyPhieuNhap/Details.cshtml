@@ -1,0 +1,71 @@
+﻿@model Eshopper.Models.EF.PhieuNhap
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2>Chi tiết phiếu nhập</h2>
+    <p>
+        <a href="@Url.Action("Index")" class="btn btn-outline-info">
+            Quay lại danh sách
+        </a>
+    </p>
+    <div> 
+        <hr />
+        <table class="table table-bordered table-striped" >
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NhaCC.Ten)
+                    </th>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NhaCC.Ten)
+                    </td>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.NgayNhap)
+                    </th>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NgayNhap.Value.ToString("dd/MM/yyyy"))
+                    </td>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            @if (Model.CTPhieuNhaps.Count() > 0)
+            {
+                foreach (var item in Model.CTPhieuNhaps)
+                {
+                    <tbody>
+                        <tr>
+                            <th>
+                                Tên sản phẩm
+                            </th>
+                            <td>
+                                @item.SanPham.TenSP
+                            </td>
+                            <th>
+                                Số lượng nhập
+                            </th>
+                            <td>
+                                @item.SoLuong
+                            </td>
+
+                            <th>
+                                Đơn giá nhập
+                            </th>
+                            <td>
+                                @item.DonGia.ToString("#,##") VNĐ
+                            </td>
+                        </tr>
+                    </tbody>
+
+                }
+            }
+        </table>
+    </div>
+</div>

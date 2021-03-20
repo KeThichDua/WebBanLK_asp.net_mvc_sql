@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "ThongKeForTime";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="bg-dark p-3 text-center text-white">
+        Thống kê theo thời gian
+    </h1>
+    <form id="form">
+        <div class="form-group row">
+            <label class="col-form-label col-lg-2 col-sm-4">
+                Chọn thời gian
+            </label>
+            <div class="col-lg-3 col-sm-4">
+                <input type="date"  name="StartDate" id="EndDate" onchange="handlerStart(event);" class="form-control"/>
+            </div>
+            <div class="col-lg-3 col-sm-4">
+                <input type="date" name="EndDate" id="EndDate" onchange="handlerEnd(event);" class="form-control" />
+            </div>
+        </div>
+    </form>
+    <div id="res">
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var startDate;
+        var endDate;
+        function handlerEnd(e) {
+            endDate = e.target.value;
+            if (startDate != undefined && endDate != undefined) {
+                var formData = $("#form").serialize();
+                $.ajax({
+                    type: "post",
+                    url: "/admin/thongke/ThongKeForTimePartialView",
+                    data: formData,
+                    success: function (res) {
+                        $("#res").html(res);
+                    },
+                    error: function () {
+                        alert("Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc");
+                    }
+                })
+            }
+        }
+        function handlerStart(e) {
+            startDate = e.target.value;
+            if (startDate != undefined && endDate != undefined) {
+                var formData = $("#form").serialize();
+                $.ajax({
+                    type: "post",
+                    url: "/admin/thongke/ThongKeForTimePartialView",
+                    data: formData,
+                    success: function (res) {
+                        $("#res").html(res);
+                    },
+                    error: function () {
+                        alert("Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc");
+                    }
+                })
+            }
+        }
+        
+
+
+    </script>
+        
+    
+}
+
+
+
+

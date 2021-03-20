@@ -1,0 +1,60 @@
+﻿@using Eshopper.Models.ViewModels;
+@using Eshopper.Models.EF;
+@model NguoiDung
+
+@{
+    ViewBag.Title = "GetRoleForUser";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+    var roles = ViewBag.Roles as IEnumerable<Role>;
+}
+<link href="~/Content/chosen.css" rel="stylesheet" />
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+        <h2>
+            Phân quyền người dùng
+        </h2>
+        <p>
+            Tên người dùng: <strong>@Model.TenND</strong>
+        </p>
+        <input type="hidden" name="MaND" value="@Model.MaND" />
+
+        <div class="form-group row">
+            <label class="col-form-label col-md-1">Quyền</label>
+            <div class="col-md-8">
+                <select name="RoleIds" multiple class="form-control chzn-select">
+                    @foreach (var item in roles)
+                    {
+
+                        if (Model.UserRoles.SingleOrDefault(x => x.RoleId == item.Id) != null)
+                        {
+                            <option selected value="@item.Id">
+                                @item.Name
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">
+                                @item.Name
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-secondary">
+                Lưu quyền
+            </button>
+        </div>
+    }
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/chosen.jquery.js"></script>
+    <script>
+        $(".chzn-select").chosen();
+    </script>
+
+}

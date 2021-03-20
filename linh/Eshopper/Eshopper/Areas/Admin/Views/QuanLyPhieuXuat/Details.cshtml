@@ -1,0 +1,88 @@
+﻿@using Eshopper.Models.EF;
+@model PhieuXuat
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2>Chi tiết phiếu nhập</h2>
+    <p>
+        <a href="@Url.Action("Index")" class="btn btn-outline-info">
+            Quay lại danh sách
+        </a>
+    </p>
+    <div>
+        <hr />
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NguoiDung.TenND)
+                    </th>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NguoiDung.TenND)
+                    </td>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.NgayDat)
+                    </th>
+
+                    <td>
+                        @if(Model.NgayDat != null)
+                        {
+                            <span>
+                                @Model.NgayDat.Value.ToString("dd/MM/yyyy")
+                            </span>
+                        }
+                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NgayShip)
+                    </th>
+
+                    <td>
+                        @if (Model.NgayShip != null)
+                        {
+                            <span>
+                                @Model.NgayShip.Value.ToString("dd/MM/yyyy")
+                            </span>
+                        }
+                    </td>
+                </tr>
+            </thead>
+            @if (Model.CTPhieuXuats.Count() > 0)
+            {
+                foreach (var item in Model.CTPhieuXuats)
+                {
+                    <tbody>
+                        <tr>
+                            <th>
+                                Tên sản phẩm
+                            </th>
+                            <td>
+                                @item.SanPham.TenSP
+                            </td>
+                            <th>
+                                Số lượng nhập
+                            </th>
+                            <td>
+                                @item.SoLuong
+                            </td>
+
+                            <th>
+                                Đơn giá nhập
+                            </th>
+                            <td>
+                                @item.SanPham.DonGia.Value.ToString("#,##") VNĐ
+                            </td>
+                        </tr>
+                    </tbody>
+
+                }
+            }
+        </table>
+    </div>
+</div>
+

@@ -1,4 +1,4 @@
-﻿namespace Eshopper.Models.EF
+namespace Eshopper.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -17,13 +17,12 @@
 
         [Key]
         [StringLength(10)]
-        [Display(Name = "Mã loại sản phẩm")]
         public string MaLoaiSP { get; set; }
-        [Display(Name = "Tên loại")]
+
         public string TenLoai { get; set; }
-        [Display(Name = "Mô tả")]
+
         public string MoTa { get; set; }
-        [Display(Name = "URL ảnh")]
+
         public string URLAnh { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
