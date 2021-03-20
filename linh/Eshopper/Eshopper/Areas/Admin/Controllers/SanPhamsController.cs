@@ -18,7 +18,7 @@ namespace Eshopper.Areas.Admin.Controllers
         private DBModels db = new DBModels();
 
         // GET: Admin/SanPhams
-        [Authorize(Roles ="member")]
+        [Authorize(Roles ="member,amdmin")]
         public ActionResult Index(int? page, string searchString ="" )
         {
             var items = db.SanPhams.ToList();
@@ -27,7 +27,7 @@ namespace Eshopper.Areas.Admin.Controllers
                 items = items.Where(x => x.TenSP.Contains(searchString)).ToList();
             }
             var pageNumber = page == null ? 1: page.Value;
-            var data = items.ToPagedList(pageNumber, 15);
+            var data = items.ToPagedList(pageNumber, 10);
             return View(data);
         }
 

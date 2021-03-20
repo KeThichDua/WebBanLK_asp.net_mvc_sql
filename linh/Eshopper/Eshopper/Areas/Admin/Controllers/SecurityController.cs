@@ -99,7 +99,7 @@ namespace Eshopper.Areas.Admin.Controllers
                 if (i < 10)
                 {
                     maND = "ND0000000" + i.ToString();
-                    var item = db.PhieuXuats.Find(maND);
+                    var item = db.NguoiDungs.SingleOrDefault(x => x.MaND == maND);
                     if (item == null)
                     {
                         return maND;
@@ -110,7 +110,7 @@ namespace Eshopper.Areas.Admin.Controllers
                     if (i < 100)
                     {
                         maND = "ND000000" + i.ToString();
-                        var item = db.PhieuXuats.Find(maND);
+                        var item = db.NguoiDungs.SingleOrDefault(x => x.MaND == maND);
                         if (item == null)
                         {
                             return maND;
@@ -121,7 +121,7 @@ namespace Eshopper.Areas.Admin.Controllers
                         if (i < 1000)
                         {
                             maND = "ND00000" + i.ToString();
-                            var item = db.PhieuXuats.Find(maND);
+                            var item = db.NguoiDungs.SingleOrDefault(x => x.MaND == maND);
                             if (item == null)
                             {
                                 return maND;
@@ -132,7 +132,7 @@ namespace Eshopper.Areas.Admin.Controllers
                             if (i < 10000)
                             {
                                 maND = "ND0000" + i.ToString();
-                                var item = db.PhieuXuats.Find(maND);
+                                var item = db.NguoiDungs.SingleOrDefault(x => x.MaND == maND);
                                 if (item == null)
                                 {
                                     return maND;
@@ -143,7 +143,7 @@ namespace Eshopper.Areas.Admin.Controllers
                                 if (i < 100000)
                                 {
                                     maND = "ND000" + i.ToString();
-                                    var item = db.PhieuXuats.Find(maND);
+                                    var item = db.NguoiDungs.Find(maND);
                                     if (item == null)
                                     {
                                         return maND;

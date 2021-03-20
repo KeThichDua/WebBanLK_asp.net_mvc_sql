@@ -45,6 +45,8 @@ namespace Eshopper.Areas.Admin.Controllers
                         if(product.SoLuong < 0)
                         {
                             ModelState.AddModelError("", "Số lượng không đủ");
+                            ViewBag.SanPhams = _db.SanPhams.ToList();
+                            ViewBag.NguoiDung = _db.NguoiDungs.ToList();
                             return View(model);
                         }
                     }
@@ -151,6 +153,7 @@ namespace Eshopper.Areas.Admin.Controllers
         {
             try
             {
+                model.NgayDat = DateTime.Now;
                 _db.PhieuXuats.AddOrUpdate(model);
 
                 foreach (var item in cTPhieuXuats)
@@ -163,6 +166,8 @@ namespace Eshopper.Areas.Admin.Controllers
                         if (product.SoLuong < 0)
                         {
                             ModelState.AddModelError("", "Số lượng không đủ");
+                            ViewBag.SanPhams = _db.SanPhams.ToList();
+                            ViewBag.NguoiDung = _db.NguoiDungs.ToList();
                             return View(model);
                         }
                     }

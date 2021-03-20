@@ -138,6 +138,7 @@ namespace Eshopper.Areas.Admin.Controllers
         {
             try
             {
+                model.NgayNhap = DateTime.Now;
                 _db.PhieuNhaps.AddOrUpdate(model);
 
                 foreach (var item in ctPhieuNhaps)

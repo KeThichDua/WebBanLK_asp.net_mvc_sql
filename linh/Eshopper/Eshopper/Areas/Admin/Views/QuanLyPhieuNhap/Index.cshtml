@@ -31,7 +31,12 @@
                     @Html.DisplayFor(modelItem => item.NhaCC.Ten)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayNhap)
+                    @if(item.NgayNhap != null)
+                    {
+                        <span>
+                            @item.NgayNhap.Value.ToString("dd/MM/yyyy")
+                        </span>
+                    }
                 </td>
                 <td>
                     <a href="@Url.Action("Details", new {  maPN = item.MaPN.TrimEnd() })" class="btn btn-outline-secondary">

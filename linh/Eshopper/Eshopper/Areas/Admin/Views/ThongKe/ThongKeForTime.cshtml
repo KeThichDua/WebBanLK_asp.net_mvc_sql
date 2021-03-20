@@ -5,16 +5,19 @@
 }
 
 <div class="container-fluid">
-    <h1 class="bg-dark p-3 text-center text-white">
+    <h2>
         Thống kê theo thời gian
-    </h1>
-    <form id="form">
+    </h2>
+    <button type="button" class="btn btn-outline-dark" onclick="XuatFileExcel()">
+        Xuất file excel
+    </button>
+    <form id="form" class=" mt-3">
         <div class="form-group row">
             <label class="col-form-label col-lg-2 col-sm-4">
                 Chọn thời gian
             </label>
             <div class="col-lg-3 col-sm-4">
-                <input type="date"  name="StartDate" id="EndDate" onchange="handlerStart(event);" class="form-control"/>
+                <input type="date" name="StartDate" id="EndDate" onchange="handlerStart(event);" class="form-control" />
             </div>
             <div class="col-lg-3 col-sm-4">
                 <input type="date" name="EndDate" id="EndDate" onchange="handlerEnd(event);" class="form-control" />
@@ -64,7 +67,20 @@
                 })
             }
         }
-        
+        function XuatFileExcel() {
+            if (startDate != undefined && endDate != undefined) {
+                var formData = $("#form").serialize();
+                $.ajax({
+                    type: "post",
+                    url: "/Admin/ThongKe/XuatExcelForTime",
+                    data: formData,
+                    success: function (res) {
+                        alert("thành công");
+                    }
+                })
+            }
+            alert("Chọn thời gian");
+        }
 
 
     </script>

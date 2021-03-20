@@ -21,55 +21,53 @@
 
     @using (Html.BeginForm())
     {
-        <div class="col-md-12" style="margin:10px auto;">
-            <table style="margin:10px auto;" id="ThongTinPhieuNhap">
-                <tr>
-                    <td><span>Nhà cung cấp:</span></td>
-                    <td>
-                        <select name="MaNCC" class="MaNCC" style="background:#ffff;width:250px;height:30px;border-radius:2px;">
-                            @foreach (var item in nhaCCs)
-                            {
-                                <option value="@item.MaNCC"> @item.Ten </option>
-                            }
-                        </select>
-                    </td>
-                </tr>
-                @*<tr>
-                        <td><span>Ngày nhập:</span></td>
-                        <td><input type="date" name="NgayNhap" style="width:250px;font-size:15px" /></td>
-                    </tr>*@
-            </table>
-        </div>
-        <div class="clearfix"></div>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-md-12" style="margin:10px auto;">
+                    <table style="margin:10px auto;" id="ThongTinPhieuNhap">
+                        <tr>
+                            <td><span>Nhà cung cấp:</span></td>
+                            <td>
+                                <select name="MaNCC" class="MaNCC" style="background:#ffff;width:250px;height:30px;border-radius:2px;">
+                                    @foreach (var item in nhaCCs)
+                                    {
+                    <option value="@item.MaNCC"> @item.Ten </option>}
+                                </select>
+                            </td>
+                        </tr>
+                        @*<tr>
+                                <td><span>Ngày nhập:</span></td>
+                                <td><input type="date" name="NgayNhap" style="width:250px;font-size:15px" /></td>
+                            </tr>*@
+                    </table>
+                </div>
+                                <div class="clearfix"></div>
 
-        <div class="col-md-11" style="margin:20px auto;">
-            <table class="table " id="tblChiTietPhieuNhap">
-                <tr class="trAppend" style="display:none;">
-                    <td>
-                        <select name="" class="ddlSanPham form-control">
-                            @foreach (var item in sanPhams)
-                            {
-                                <option value="@item.MaSP">
-                                    @item.TenSP
-                                </option>
-                            }
-                        </select>
-                    </td>
-                    <td><input type="number" name="" class="txtSoLuongNhap form-control" /></td>
-                    <td><input type="number" name="" class="txtDonGiaNhap form-control" /></td>
-                    <td><span class="btnDelete btn btn-danger">-</span></td>
-                </tr>
-                <tr class="trFirstChild" data-id="-1">
-                    <td>Sản phẩm</td>
-                    <td>Số lượng nhập</td>
-                    <td>Đơn giá nhập</td>
-                    <td></td>
-                </tr>
-            </table>
-            <input type="button" value="+" class="btn btn-success" id="btnAdd" />
-            <input type="submit" value="Nhập hàng" class="btn btn-primary" id="btnNhapHang" />
-        </div>
-    }
+                                                <div class="col-md-11" style="margin:20px auto;">
+                                                    <table class="table " id="tblChiTietPhieuNhap">
+                                                        <tr class="trAppend" style="display:none;">
+                                                            <td>
+                                                                <select name="" class="ddlSanPham form-control">
+                                                                    @foreach (var item in sanPhams)
+                                                                    {
+                                                    <option value="@item.MaSP">
+                                                        @item.TenSP
+                                                    </option>}
+                                                                </select>
+                                                            </td>
+                                                            <td><input type="number" name="" class="txtSoLuongNhap form-control" /></td>
+                                                            <td><input type="number" name="" class="txtDonGiaNhap form-control" /></td>
+                                                            <td><span class="btnDelete btn btn-danger">-</span></td>
+                                                        </tr>
+                                                        <tr class="trFirstChild" data-id="-1">
+                                                            <td>Sản phẩm</td>
+                                                            <td>Số lượng nhập</td>
+                                                            <td>Đơn giá nhập</td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                    <input type="button" value="+" class="btn btn-success" id="btnAdd" />
+                                                    <input type="submit" value="Nhập hàng" class="btn btn-primary" id="btnNhapHang" />
+                                                </div>}
 </div>
 
 @section scripts{
