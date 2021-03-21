@@ -16,9 +16,14 @@ namespace Eshopper.Controllers
             var session = (NguoiDungLogin)Session[CommomConstants.NguoiDungSession];
             if (session == null)
             {
-                filterContext.Result = Redirect("/Login");
-                    //new RedirectToRouteResult(new
-                    //RouteValueDictionary(new { controller = "Login", action = "Index"}));
+                session = (NguoiDungLogin)Session[CommomConstants.AdminSession];
+                if(session == null)
+                {
+                    filterContext.Result = Redirect("/Login");
+                                        //new RedirectToRouteResult(new
+                                        //RouteValueDictionary(new { controller = "Login", action = "Index"}));
+                }
+                
                
             }
             base.OnActionExecuting(filterContext);
