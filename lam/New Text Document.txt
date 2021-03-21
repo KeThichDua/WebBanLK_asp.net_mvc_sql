@@ -1,0 +1,3 @@
+- Loi thog ke khi ngayship cua 1 phieu xuat null
+- Khi dang nhap vao admin ma ko dang xuat, quay tro lai client vao gio hang
+se bi loi neu ko co nguoi dung trung voi email va userAd

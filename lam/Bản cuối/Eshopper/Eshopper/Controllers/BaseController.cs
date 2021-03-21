@@ -13,13 +13,33 @@ namespace Eshopper.Controllers
         // GET: Base
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            //var session = (NguoiDungLogin)Session[CommomConstants.NguoiDungSession];
+            //if (session == null)
+            //{
+            //    session = (NguoiDungLogin)Session[CommomConstants.AdminSession];
+            //    if(session == null)
+            //    {
+            //        filterContext.Result = Redirect("/Login");
+            //                            //new RedirectToRouteResult(new
+            //                            //RouteValueDictionary(new { controller = "Login", action = "Index"}));
+            //    }
+                
+               
+            //}
+            //base.OnActionExecuting(filterContext);
+
             var session = (NguoiDungLogin)Session[CommomConstants.NguoiDungSession];
             if (session == null)
             {
-                filterContext.Result = Redirect("/Login");
+                session = (NguoiDungLogin)Session[CommomConstants.AdminSession];
+                if (session == null)
+                {
+                    filterContext.Result = Redirect("/Login");
                     //new RedirectToRouteResult(new
                     //RouteValueDictionary(new { controller = "Login", action = "Index"}));
-               
+                }
+
+
             }
             base.OnActionExecuting(filterContext);
         }
