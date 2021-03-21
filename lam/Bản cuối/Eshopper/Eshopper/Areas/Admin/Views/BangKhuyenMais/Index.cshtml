@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Eshopper.Models.EF.BangKhuyenMai>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<link href="~/Areas/AssetAdmin/css/indexadmin.css" rel="stylesheet" type="text/css">
+
+
+
+<div id="titleadmin">QUẢN LÝ MÃ KHUYẾN MÃI</div>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table" id="customers">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaKM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TienKM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TiLeKM)
+        </th>
+        <th style="width:80px">
+            <a href="@Url.Action("Create", "BangKhuyenMais")"><img src="~/Assets/images/icons/add.png" style="margin-left:35%" /></a>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaKM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TienKM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TiLeKM)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaKM.Replace(" ", string.Empty) }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.MaNCC }) |*@
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaKM.Replace(" ", string.Empty) })
+            </td>
+        </tr>
+    }
+
+</table>

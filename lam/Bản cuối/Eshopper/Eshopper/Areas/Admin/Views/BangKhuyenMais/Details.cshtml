@@ -1,0 +1,35 @@
+﻿@model Eshopper.Models.EF.BangKhuyenMai
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BangKhuyenMai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TienKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TienKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiLeKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiLeKM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaKM }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

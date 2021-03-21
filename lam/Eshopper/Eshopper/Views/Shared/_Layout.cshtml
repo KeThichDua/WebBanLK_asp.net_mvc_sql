@@ -92,7 +92,7 @@
                             <ul class="nav navbar-nav">
                                 @if (Session[CommomConstants.NguoiDungSession] == null)
                                 {
-                                    <li><a href="#"><i class="fa fa-star"></i> Danh sách ưa thích</a></li>
+                                    <li><a href="/PhieuXuat"><i class="fa fa-star"></i> Lịch sử đơn hàng</a></li>
                                     <li><a href="/Checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
                                     <li><a href="/Card"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                                     <li><a href="/Login"><i class="fa fa-lock"></i> Đăng nhập</a></li>
@@ -103,7 +103,7 @@
                                     var nd = new NguoiDungLogin();
                                     nd = (NguoiDungLogin)sessnd;
                                     <li><a href="#"><i class="fa fa-user"></i> Chào mừng, @nd.UserName</a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i> Danh sách ưa thích</a></li>
+                                    <li><a href="/PhieuXuat"><i class="fa fa-star"></i> Lịch sử đơn hàng</a></li>
                                     <li><a href="/Checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
                                     <li><a href="/Card"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                                     <li><a href="/Login"><i class="fa fa-lock"></i> Đăng xuất</a></li>

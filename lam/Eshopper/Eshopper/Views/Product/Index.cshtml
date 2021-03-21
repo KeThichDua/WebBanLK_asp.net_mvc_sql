@@ -1,4 +1,5 @@
-﻿@model Eshopper.Models.EF.DBModels
+﻿@model PagedList.IPagedList<Eshopper.Models.EF.SanPham>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,7 +20,7 @@
                     <div class="panel-group category-products" id="accordian">
                         <!--category-productsr-->
 
-                        @foreach (var item in Model.LoaiSPs)
+                        @foreach (var item in ViewBag.lsp)
                         {
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -37,7 +38,7 @@
                     <div class="brands_products">
                         <!--brands_products-->
                         <h2>HÃNG SẢN XUẤT</h2>
-                        @foreach (var item in Model.NhaCCs)
+                        @foreach (var item in ViewBag.ncc)
                         {
                             <div class="brands-name">
                                 <ul class="nav nav-pills nav-stacked">
@@ -70,7 +71,7 @@
                     <!--features_items-->
                     <h2 class="title text-center">Tất cả sản phẩm</h2>
 
-                    @foreach (var item in Model.SanPhams)
+                    @foreach (var item in Model)
                     {
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
@@ -83,7 +84,7 @@
                                         }
                                         else
                                         {
-                                            <br><br>
+                                    <h3><strike>  </strike></h3>
                                         }
                                         <h2>@item.GiaKM đ</h2>
                                         <p>@item.TenSP</p>
@@ -100,21 +101,23 @@
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
                                         <li><a href=""><i class="fa fa-plus-square"></i>Thêm vào ưu thích</a></li>
-                                        <li><a href=""><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>
+                                        <li><a href="/Product/ProductDetail?id=@item.MaSP"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     }
 
-                    @*<ul class="pagination">
-            <li class="active"><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">&raquo;</a></li>
-        </ul>*@
                 </div><!--features_items-->
+                <!-- Thêm mã phân trang -->
+                <br />
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                <!-- Kết thúc -->
             </div>
+
+
         </div>
     </div>
 </section>

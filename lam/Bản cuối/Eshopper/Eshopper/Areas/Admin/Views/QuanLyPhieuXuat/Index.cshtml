@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Eshopper.Models.EF.PhieuXuat>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2>Danh sách phiếu xuất</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NguoiDung.SDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayShip)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NguoiDung.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayShip)
+                </td>
+                <td>
+                <td>
+                    <a href="@Url.Action("Details", new {  maPX = item.MaPX.TrimEnd() })" class="btn btn-outline-secondary">
+                        Chi tiết
+                    </a>
+                    <a href="@Url.Action("Update", new {  maPX = item.MaPX.TrimEnd() })" class="btn btn-outline-secondary">
+                        Cập nhập
+                    </a>
+                    <button type="button" class="btn btn-outline-danger ml-2" onclick="DeletePhieuXuat('@item.MaPX.TrimEnd()')">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section scripts{
+    <script>
+        function DeletePhieuXuat(maPN) {
+            if (confirm("Bạn có chắc muốn xóa liên hệ đã chọn không?")) {
+                $.ajax({
+                    type: "Post",
+                    url: "/Admin/QuanLyPhieuXuat/DeletePhieuXuat",
+                    data: { maPN: maPN },
+                    success: function (res) {
+                        if (res) {
+                            alert("Xóa thành công!");
+                            $("#row-" + maPN).fadeOut();
+                        }
+                        else {
+                            alert("Bị lỗi!");
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+}

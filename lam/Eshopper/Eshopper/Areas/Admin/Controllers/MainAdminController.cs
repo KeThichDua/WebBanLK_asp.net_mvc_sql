@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class MainAdminController : Controller
+    public class MainAdminController : BaseController
     {
         // GET: Admin/MainAdmin
         public ActionResult Index()

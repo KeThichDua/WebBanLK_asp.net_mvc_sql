@@ -1,0 +1,40 @@
+﻿#titleadmin {
+    margin-left: 1%;
+    margin-bottom: 1%;
+    font-family: sans-serif;
+    color: #4e73df;
+    font: bold;
+}
+
+#customers {
+    font-size: 0.1em;
+    font-family: sans-serif;
+    border-collapse: collapse;
+    width: 98%;
+    margin-left: 1%;
+}
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        font-size: 12px;
+        /* font-size: 5px;*/
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        /* background-color: #009879;*/
+        background-color: #4e73df;
+        color: white;
+        font-size: 12px;
+    }

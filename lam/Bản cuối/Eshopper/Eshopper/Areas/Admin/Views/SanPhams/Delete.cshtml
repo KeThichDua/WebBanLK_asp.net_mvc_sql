@@ -1,0 +1,97 @@
+﻿@model Eshopper.Models.EF.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+
+
+<link href="~/Areas/AssetAdmin/css/indexadmin.css" rel="stylesheet" type="text/css">
+
+<link href="~/Areas/AssetAdmin/css/crudadmin.css" rel="stylesheet" type="text/css">
+
+<div id="titleadmin">XÓA SẢN PHẨM</div>
+<div style="margin-left: 1%">Bạn có muốn xóa không?</div>
+<div>
+    
+    <dl class="dl-horizontal" id="customers">
+        <dt>
+            @Html.DisplayNameFor(model => model.BangKhuyenMai.MaKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BangKhuyenMai.MaKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiSP.TenLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSP.TenLoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaKM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URLAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URLAnh)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="margin: 1%">
+            <input type="submit" value="Xóa" class="btn btn-default" style="width:8%"/> 
+            
+        </div>
+        <div style="margin: 1%">
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

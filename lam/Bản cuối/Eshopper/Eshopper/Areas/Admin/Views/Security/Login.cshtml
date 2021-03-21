@@ -1,0 +1,31 @@
+﻿@using Eshopper.Models.ViewModels;
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h2 class="text-center"> Đăng Nhập </h2>
+        <div class="row justify-content-center">
+            
+            <div class="col-5">
+                <div class="form-group">
+                    <label>Tài khoản</label>
+                    <input class="form-control" name="UserName">
+                </div>
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <input type="password" class="form-control" name="PassWord">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+        </div>
+        
+    }
+</div>
