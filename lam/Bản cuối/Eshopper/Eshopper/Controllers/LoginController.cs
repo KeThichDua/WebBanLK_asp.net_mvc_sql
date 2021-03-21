@@ -35,6 +35,7 @@ namespace Eshopper.Controllers
                     AdSess.ID = admin.MaAdmin;
                     AdSess.UserName = admin.UserAd;
                     Session.Add(CommomConstants.AdminSession, AdSess);
+                    //Session.Add(CommomConstants.NguoiDungSession, AdSess);
                     return RedirectToAction("Index", "LoaiSPs", new { area = "Admin" });
                 }
                     
