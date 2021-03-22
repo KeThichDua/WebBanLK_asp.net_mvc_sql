@@ -10,7 +10,7 @@
 
 
 <div class="container-fluid">
-    <h1 class="bg-dark p-3 text-center text-white"> 
+    <h1 class="bg-dark p-3 text-center text-white">
         Sửa thông tin phiếu nhập
     </h1>
     <p>
@@ -21,10 +21,11 @@
 
     @using (Html.BeginForm())
     {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="col-md-12" style="margin:10px auto;">
             <input type="hidden" name="MaPN" value="@Model.MaPN" />
             <table style="margin:10px auto;" id="ThongTinPhieuNhap">
-                
+
                 <tr>
                     <td><span>Nhà cung cấp:</span></td>
                     <td>

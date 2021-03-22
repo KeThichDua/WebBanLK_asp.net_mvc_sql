@@ -27,7 +27,7 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr id="row-@item.MaPX">
                 <td>
                     @Html.DisplayFor(modelItem => item.NguoiDung.SDT)
                 </td>
@@ -57,16 +57,16 @@
 
 @section scripts{
     <script>
-        function DeletePhieuXuat(maPN) {
+        function DeletePhieuXuat(maPX) {
             if (confirm("Bạn có chắc muốn xóa liên hệ đã chọn không?")) {
                 $.ajax({
                     type: "Post",
                     url: "/Admin/QuanLyPhieuXuat/DeletePhieuXuat",
-                    data: { maPN: maPN },
+                    data: { maPX: maPX },
                     success: function (res) {
                         if (res) {
                             alert("Xóa thành công!");
-                            $("#row-" + maPN).fadeOut();
+                            $("#row-" + maPX).fadeOut();
                         }
                         else {
                             alert("Bị lỗi!");

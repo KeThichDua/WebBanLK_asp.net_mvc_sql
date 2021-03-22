@@ -4,10 +4,11 @@
     font-family: sans-serif;
     color: #4e73df;
     font: bold;
+    font-size: 15px;
 }
 
 #customers {
-    font-size: 0.1em;
+    font-size: 1em;
     font-family: sans-serif;
     border-collapse: collapse;
     width: 98%;

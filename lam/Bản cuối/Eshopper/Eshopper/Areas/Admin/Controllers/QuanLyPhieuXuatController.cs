@@ -35,6 +35,11 @@ namespace Eshopper.Areas.Admin.Controllers
                 model.MaPX = maPX;
                 model.NgayDat = DateTime.Now;
                 _db.PhieuXuats.Add(model);
+                if (cTPhieuXuats.Count() <= 0)
+                {
+                    ModelState.AddModelError("", @"Hãy chọn sản phẩm ");
+                    return View(model);
+                }
 
                 foreach (var item in cTPhieuXuats)
                 {
@@ -156,7 +161,11 @@ namespace Eshopper.Areas.Admin.Controllers
             {
                 model.NgayDat = DateTime.Now;
                 _db.PhieuXuats.AddOrUpdate(model);
-
+                if (cTPhieuXuats.Count() <= 0)
+                {
+                    ModelState.AddModelError("", @"Hãy chọn sản phẩm ");
+                    return View(model);
+                }
                 foreach (var item in cTPhieuXuats)
                 {
                     item.MaPX = model.MaPX;
@@ -172,6 +181,7 @@ namespace Eshopper.Areas.Admin.Controllers
                             return View(model);
                         }
                     }
+                    _db.SanPhams.AddOrUpdate(product);
                     _db.CTPhieuXuats.AddOrUpdate(item);
                 }
                 _db.SaveChanges();

@@ -35,7 +35,11 @@ namespace Eshopper.Areas.Admin.Controllers
                 model.MaPN = maPN;
                 model.NgayNhap = DateTime.Now;
                 _db.PhieuNhaps.Add(model);
-
+                if(ctPhieuNhaps.Count() <= 0)
+                {
+                    ModelState.AddModelError("", @"Hãy chọn sản phẩm ");
+                    return View(model);
+                }    
                 foreach (var item in ctPhieuNhaps)
                 {
                     item.MaPN = maPN;
@@ -141,7 +145,11 @@ namespace Eshopper.Areas.Admin.Controllers
             {
                 model.NgayNhap = DateTime.Now;
                 _db.PhieuNhaps.AddOrUpdate(model);
-
+                if (ctPhieuNhaps.Count() <= 0)
+                {
+                    ModelState.AddModelError("", @"Hãy chọn sản phẩm ");
+                    return View(model);
+                }
                 foreach (var item in ctPhieuNhaps)
                 {
                     item.MaPN = model.MaPN;

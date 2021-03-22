@@ -4,11 +4,15 @@
 @{ ViewBag.Title = "ThongKe";
     Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml"; }
 
-<div class="container-fluid">
+<link href="~/Areas/AssetAdmin/css/indexadmin.css" rel="stylesheet" type="text/css">
+
+<link href="~/Areas/AssetAdmin/css/crudadmin.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid" id="customers">
     <div class="mt-4">
-        <h2>
+        <div id="titleadmin">
             Thống kê nhập
-        </h2>
+        </div>
         <button type="button" class="btn btn-outline-dark" onclick="XuatFileExcel()">
             Xuất file excel
         </button>
@@ -45,9 +49,9 @@
         </table>
     </div>
     <div class="mt-4">
-        <h2>
+        <div id="titleadmin">
             Thống kê Xuất
-        </h2>
+        </div>
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
@@ -95,9 +99,9 @@
         </table>
     </div>
     <div class="mt-4">
-        <h2>
+        <div id="titleadmin">
             Thống kê top @Model.TKTopSanPhams.Count() sản phẩm bán chạy nhất
-        </h2>
+        </div>
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
@@ -131,9 +135,9 @@
         </table>
     </div>
     <div class="mt-4">
-        <h2>
+        <div id="titleadmin">
             Thống kê xuất theo người dùng
-        </h2>
+        </div>
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>

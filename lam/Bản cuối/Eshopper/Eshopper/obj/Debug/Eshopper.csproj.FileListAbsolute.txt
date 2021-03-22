@@ -786,8 +786,8 @@ C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuố
 C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\bin\Newtonsoft.Json.xml
 C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\bin\Antlr3.Runtime.pdb
 C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\obj\Debug\Eshopper.csprojAssemblyReference.cache
 C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\obj\Debug\Eshopper.csproj.CoreCompileInputs.cache
 C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\obj\Debug\Eshopper.csproj.CopyComplete
 C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\obj\Debug\Eshopper.dll
 C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\obj\Debug\Eshopper.pdb
+C:\Users\Linh\Desktop\Code\ClientServer\WebBanLK_asp.net_mvc_sql\lam\Bản cuối\Eshopper\Eshopper\obj\Debug\Eshopper.csprojAssemblyReference.cache

@@ -30,7 +30,12 @@
                     </th>
 
                     <td>
-                        @Html.DisplayFor(model => model.NgayNhap.Value.ToString("dd/MM/yyyy"))
+                        @if (Model.NgayNhap != null)
+                        { 
+                            <span>
+                                Model.NgayNhap.Value.ToString("dd/MM/yyyy")
+                            </span>
+                        }
                     </td>
                     <th></th>
                     <th></th>

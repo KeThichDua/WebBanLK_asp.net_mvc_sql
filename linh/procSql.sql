@@ -7,6 +7,9 @@ BEGIN
 	INNER JOIN dbo.NhaCC ncc ON ncc.MaNCC = pn.MaNCC
 	GROUP BY pn.MaPN, pn.MaNCC, ncc.Ten
 END
+
+exec ThongKe_Nhap
+
 GO
 CREATE PROC ThongKe_Nhap_Khoang_Thoi_gian @startDate DATETIME, @endDate DATETIME
 AS
@@ -19,6 +22,8 @@ BEGIN
 	GROUP BY pn.MaPN, pn.MaNCC, ncc.Ten
 END
 GO
+exec ThongKe_Nhap_Khoang_Thoi_gian N'2021/2/15', N'2021/3/25'
+
 CREATE PROC ThongKe_Xuat
 AS
 BEGIN

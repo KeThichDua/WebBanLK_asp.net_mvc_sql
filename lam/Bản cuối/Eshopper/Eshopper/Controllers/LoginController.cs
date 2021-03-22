@@ -27,7 +27,7 @@ namespace Eshopper.Controllers
             {
                 DBModels db = new DBModels();
                 
-                var admin = db.Admins.FirstOrDefault(x => x.UserAd == model.UserName && x.Pass == model.Pass);
+                var admin = db.Admins.FirstOrDefault(x => x.UserAd == model.Email && x.Pass == model.Pass);
                 if (admin != null)
                 {
                     var AdSess = new NguoiDungLogin();
