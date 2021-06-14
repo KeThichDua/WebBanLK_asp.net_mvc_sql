@@ -1,0 +1,248 @@
+﻿@model List<Eshopper.Models.EF.SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="/images/slider1.png" class="girl img-responsive" alt="" />
+                            </div>
+                            <div class="item">
+                                <img src="/images/slider2.png" class="girl img-responsive" alt="" />
+                            </div>
+
+                            <div class="item">
+                                <img src="/images/slider3.png" class="girl img-responsive" alt=""/>
+                            </div>
+
+                        </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->
+
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" style="padding-bottom:1%; padding-left:75%">
+    <div class="input-group">
+        <input id="searchString" name="searchString" type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..."
+               aria-label="Search" aria-describedby="basic-addon2" style="background-color: #fff !important">
+        @*<div class="input-group-append">*@
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-search"></i>
+        </button>
+        @*</div>*@
+    </div>
+</form>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>DANH MỤC</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-productsr-->
+
+                        @foreach (var item in ViewBag.lsp)
+                        {
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a href="/Product/Loc?id=@item.MaLoaiSP&loai=1">
+                                            <span class="badge pull-right"><i class=""></i></span>
+                                            @item.TenLoai
+                                        </a>
+                                    </h4>
+                                </div>
+                            </div>
+                        }
+                    </div><!--/category-products-->
+
+                    <div class="brands_products">
+                        <!--brands_products-->
+                        <h2>HÃNG SẢN XUẤT</h2>
+                        @foreach (var item in ViewBag.ncc)
+                        {
+                            <div class="brands-name">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="/Product/Loc?id=@item.MaNCC&loai=2"> @item.Ten</a></li>
+                                </ul>
+                            </div>
+                        }
+
+                    </div><!--/brands_products-->
+
+                    <div class="price-range">
+                        <!--price-range-->
+                        <h2>Mức giá</h2>
+                        <div class="well text-center">
+                            <input type="text" class="span2" value="" data-slider-min="1000" data-slider-max="50000000" data-slider-step="5" data-slider-value="[1000,1000000]" id="sl2"><br />
+                            <b class="pull-left">1000</b> <b class="pull-right">50000000</b>
+                        </div>
+                    </div><!--/price-range-->
+
+                    <div class="shipping text-center">
+                        <!--shipping-->
+                        <img src="/Assets/images/home/shipping.jpg" alt="" />
+                    </div><!--/shipping-->
+
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Sản phẩm nổi bật</h2>
+                    @{int sl = 12;}
+                    @foreach (var item in Model)
+                    {
+                        if (sl % 2 == 0)
+                        {
+                            sl--;
+                            continue;
+                        }
+                        else if (sl > 0)
+                        {
+                            sl--;
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="@item.URLAnh" alt="" style="width:210px;height:210px;" />
+                                            @if (item.DonGia > item.GiaKM)
+                                            {
+                                                <h3><strike>  @item.DonGia đ </strike></h3>
+                                            }
+                                            else
+                                            {
+                                               <br><br>
+                                            }
+                                            <h2>@item.GiaKM đ</h2>
+                                            <p>@item.TenSP</p>
+
+                                            <a href="/Card/AddItem?id=@item.MaSP&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        </div>
+                                        <div class="product-overlay">
+                                            <div class="overlay-content">
+                                                <h2>@item.GiaKM</h2>
+                                                <p>@item.TenSP</p>
+                                                <a href="/Card/AddItem?id=@item.MaSP&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="choose">
+                                        <ul class="nav nav-pills nav-justified">
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào ưu thích</a></li>
+                                            <li><a href="/Product/ProductDetail?id=@item.MaSP"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                                    
+                </div><!--features_items-->
+
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">Khuyên dùng</h2>
+
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+
+                                @{sl = 6;}
+                                @foreach (var item in Model)
+                                {
+                                    if (sl % 2 > 0)
+                                    {
+                                        sl--;
+                                        continue;
+                                    }
+                                    if (sl > 0)
+                                    {
+                                        sl--;
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="@item.URLAnh" alt="" style="width:210px;height:210px;"/>
+                                                        <h2>@item.GiaKM đ</h2>
+                                                        <p>@item.TenSP</p>
+                                                        <a href="/Card/AddItem?id=@item.MaSP&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+                            <div class="item">
+                                @{sl = 6;}
+                                @foreach (var item in Model)
+                                {
+                                    if (sl % 2 > 0)
+                                    {
+                                        sl--;
+                                        continue;
+                                    }
+                                    if (sl > 0)
+                                    {
+                                        sl--;
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="@item.URLAnh" alt="" style="width:210px;height:210px;"/>
+                                                        <h2>@item.GiaKM đ</h2>
+                                                        <p>@item.TenSP</p>
+                                                        <a href="/Card/AddItem?id=@item.MaSP&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div><!--/recommended_items-->
+
+            </div>
+        </div>
+    </div>
+</section>

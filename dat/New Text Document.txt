@@ -1,5 +1,0 @@
-- Tách thành các phan nhu hình 
-- Thêm het các trang ngoai tru 404, wishlist, blog
-
-
-- Phan hien thi san pham sau tôi sua vào

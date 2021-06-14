@@ -2288,7 +2288,6 @@
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\PhieuXuat\Index.cshtml" />
     <Content Include="Views\Product\Loc.cshtml" />
@@ -2300,6 +2299,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Admin\" />
     <Folder Include="Areas\Admin\Views\Identity\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
