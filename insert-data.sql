@@ -218,7 +218,7 @@ insert into NhaCC values
 ( 'ncc2', N'Cửa hàng linh kiện điện tử Hoàng Phát', N'Số 9-B1-Thủ lệ 1-Ngọc khánh-Ba đình-HN (đi ngõ 113 Đào tấn)', '0834.661158 ', 'dientuhoangphat@gmail.com');
 insert into NhaCC values
 ( 'ncc3', N'Công ty TNHH điện tử công nghiệp Ritech', N'Số 43, Ngõ 467 Phạm Văn Đồng, Cổ Nhuế, Từ Liêm, Hà Nội', '0902 187 499', 'ritech.vn@gmail.com');
-
+~
 -- nguoi dung: MaND,  SDT, GioiTinh, Tuoi, DiaChi, UserName, Email, Pass, MaLoaiND, TenND
 insert into NguoiDung values 
 ( 'nd1',  '0367035548', 'Nam', '22', N'Ngãi Cầu - An ndánh - Hoài Đức - Hà Nội', 'buihoanglam', 'buihoanglam99@gmail.com', '123456', 'lnd1',N'Bùi Hoàng Lam');
