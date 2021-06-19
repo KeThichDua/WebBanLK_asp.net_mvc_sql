@@ -26,19 +26,7 @@ namespace Eshopper.Controllers
             if (ModelState.IsValid)
             {
                 DBModels db = new DBModels();
-                
-                var admin = db.Admins.FirstOrDefault(x => x.UserAd == model.Email && x.Pass == model.Pass);
-                if (admin != null)
-                {
-                    var AdSess = new NguoiDungLogin();
-                    AdSess.Email = admin.Email;
-                    AdSess.ID = admin.MaAdmin;
-                    AdSess.UserName = admin.UserAd;
-                    Session.Add(CommomConstants.AdminSession, AdSess);
-                    //Session.Add(CommomConstants.NguoiDungSession, AdSess);
-                    return RedirectToAction("Index", "LoaiSPs", new { area = "Admin" });
-                }
-                    
+                                    
                 var dao = new NguoiDungDao();
                 var result = dao.Login(model.Email, model.Pass);
                 if (result)

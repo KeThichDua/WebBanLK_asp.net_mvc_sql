@@ -7,21 +7,24 @@ using System.Web.Mvc;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class MainAdminController : BaseController
+    public class MainAdminController : Controller
     {
         // GET: Admin/MainAdmin
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: Admin/MainAdmin/Details/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Admin/MainAdmin/Create
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +47,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/MainAdmin/Edit/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Edit(int id)
         {
             return View();
@@ -66,6 +70,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/MainAdmin/Delete/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Delete(int id)
         {
             return View();

@@ -17,23 +17,21 @@
         <table class="table table-bordered table-striped" >
             <thead>
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.NhaCC.Ten)
+                    <th>Tên nhà cung cấp
                     </th>
 
                     <td>
                         @Html.DisplayFor(model => model.NhaCC.Ten)
                     </td>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.NgayNhap)
+                    <th>Ngày nhập
                     </th>
 
                     <td>
                         @if (Model.NgayNhap != null)
                         { 
                             <span>
-                                Model.NgayNhap.Value.ToString("dd/MM/yyyy")
+                                @Model.NgayNhap.Value.ToString("dd/MM/yyyy")
                             </span>
                         }
                     </td>

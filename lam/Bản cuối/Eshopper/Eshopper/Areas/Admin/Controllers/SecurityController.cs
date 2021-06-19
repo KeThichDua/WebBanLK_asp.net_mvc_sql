@@ -25,7 +25,7 @@ namespace Eshopper.Areas.Admin.Controllers
         public ActionResult Login(LoginViewModel model)
         {
             var res = db.NguoiDungs.SingleOrDefault(x => x.UserName == model.UserName);
-            if(res == null)
+            if (res == null)
             {
                 ModelState.AddModelError("", @"Sai tài khoản");
                 return View(model);
@@ -36,12 +36,12 @@ namespace Eshopper.Areas.Admin.Controllers
                 return View(model);
             }
             string roles = "";
-            foreach(var item in res.UserRoles)
+            foreach (var item in res.UserRoles)
             {
                 var x = db.Roles.Find(item.RoleId);
                 roles += x.Code + ",";
             }
-            if(roles.Length > 1)
+            if (roles.Length > 1)
             {
                 roles = roles.Substring(0, roles.Length - 1);
             }
@@ -58,15 +58,15 @@ namespace Eshopper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Register(NguoiDung model, string confimPass)
         {
-            if (model.UserName == "Admin" || model.UserName == "admin")
+            if (model.UserName.ToLower().Contains("admin"))
             {
-                ModelState.AddModelError("", @"Không được lấy tên là admin hoặc Admin");
+                ModelState.AddModelError("", @"Không được lấy tên là admin");
                 return View(model);
             }
-            var check = db.NguoiDungs.SingleOrDefault(x => x.UserName == model.UserName);
-            if(check != null)
+            var check = db.NguoiDungs.SingleOrDefault(x => x.UserName == model.UserName || x.Email == model.Email);
+            if (check != null)
             {
-                ModelState.AddModelError("", @"Tài khoản đã được sử dụng");
+                ModelState.AddModelError("", @"Tài khoản hoặc email đã được sử dụng");
                 return View(model);
             }
             if (model.MatKhau != confimPass)
@@ -91,7 +91,7 @@ namespace Eshopper.Areas.Admin.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        string getMaND()
+        public string getMaND()
         {
             string maND = "ND";
             for (int i = 1; i < 100000000; i++)
@@ -158,7 +158,6 @@ namespace Eshopper.Areas.Admin.Controllers
             return maND;
         }
 
-
         public void SetRoles(string userName, string roles)
         {
             FormsAuthentication.Initialize();
@@ -187,10 +186,11 @@ namespace Eshopper.Areas.Admin.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("ListUser");
+            return RedirectToAction("Login");
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult ListUser()
         {
             var items = db.NguoiDungs.ToList();
@@ -198,10 +198,11 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult GetRoleForUser(string maND)
         {
             var item = db.NguoiDungs.FirstOrDefault(x => x.MaND == maND);
-            if(item != null)
+            if (item != null)
             {
                 ViewBag.Roles = db.Roles.ToList();
 
@@ -214,16 +215,25 @@ namespace Eshopper.Areas.Admin.Controllers
         public ActionResult GetRoleForUser(NguoiDung model, List<Guid> RoleIds)
         {
             //var userRoles = db.UserRoles.Where(x => x.UserId == model.MaND).ToList();
-            foreach(var id in RoleIds)
+            try
             {
-                var userRole = new UserRole()
-                {
-                    RoleId = id,
-                    UserId = model.MaND
-                };
-                db.UserRoles.AddOrUpdate(userRole);
+               
+                    foreach (var id in RoleIds)
+                    {
+                        var userRole = new UserRole()
+                        {
+                            RoleId = id,
+                            UserId = model.MaND
+                        };
+                        db.UserRoles.AddOrUpdate(userRole);
+                    }
+                    db.SaveChanges();
+                
             }
-            db.SaveChanges();
+            catch
+            {
+                    ModelState.AddModelError("", @"Hãy chọn ít nhất 1 quyền");
+            }
             return RedirectToAction("ListUser");
         }
 

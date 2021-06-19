@@ -192,8 +192,15 @@
     <Compile Include="Models\ViewModels\SecurityViewModel.cs" />
     <Compile Include="Models\ViewModels\ThongKeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="3986701-online-shop-store-store-icon_112278.ico" />
+    <Content Include="admin_user_icon_188317.ico" />
     <Content Include="Areas\AssetAdmin\css\crudadmin.css" />
     <Content Include="Areas\AssetAdmin\css\sb-admin-2.css" />
     <Content Include="Areas\AssetAdmin\css\sb-admin-2.min.css" />
@@ -2259,6 +2266,10 @@
     <Content Include="Areas\Admin\Views\Security\Register.cshtml" />
     <Content Include="Areas\Admin\Views\Security\GetRoleForUser.cshtml" />
     <Content Include="Areas\Admin\Views\Security\ListUser.cshtml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
@@ -2318,6 +2329,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>3986701-online-shop-store-store-icon_112278.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

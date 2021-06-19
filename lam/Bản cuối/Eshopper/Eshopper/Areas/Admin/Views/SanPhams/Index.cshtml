@@ -24,19 +24,17 @@
             </div>
         </div>
     </form>
-
+    @{int a = 0;} 
     <table class="table table-bordered table-striped" id="customers">
         <tr>
-
-            <th>Mã sản phẩm</th>
-            <th>Mã khuyến mãi</th>
-            <th>Tên loại sản phẩm</th>
+            <th>STT</th>
             <th>Tên sản phẩm</th>
             <th>Số lượng</th>
             <th>Đơn giá</th>
-            <th>Mô tả</th>
             <th>Giá khuyến mãi</th>
-            <th>URL ảnh</th>
+            <th>Mô tả</th>
+            <th>Loại sản phẩm</th>
+            <th>Ảnh</th>
             <th style="width:80px">
                 <a href="@Url.Action("Create", "SanPhams")"><img src="~/Assets/images/icons/add.png" style="margin-left:35%" /></a>
             </th>
@@ -45,15 +43,13 @@
 
         @foreach (var item in Model)
         {
+            a++;
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MaSP)
+                    @a
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenSP)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SoLuong)
@@ -62,24 +58,23 @@
                     @Html.DisplayFor(modelItem => item.DonGia)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MoTa)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.GiaKM)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BangKhuyenMai.MaKM)
+                    @Html.DisplayFor(modelItem => item.MoTa)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
+                </td>
+                <td style="width:105px;height:105px;">
                     @if (item.URLAnh != null)
                     {
                         <img src="@Path.Combine(item.URLAnh)" class="img-thumbnail" />
                     }
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP.Replace(" ", string.Empty) }) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaSP.Replace(" ", string.Empty) })
-
+                    <a href="/Admin/SanPhams/Edit?id=@item.MaSP">Sửa</a> |
+                    <a href="/Admin/SanPhams/Delete?id=@item.MaSP">Xóa</a>
                 </td>
             </tr>
         }

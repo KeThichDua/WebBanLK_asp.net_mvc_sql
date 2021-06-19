@@ -11,17 +11,19 @@ using Eshopper.Models.EF;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class BangKhuyenMaisController : BaseController
+    public class BangKhuyenMaisController : Controller
     {
         private DBModels db = new DBModels();
 
         // GET: Admin/BangKhuyenMais
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Index()
         {
             return View(db.BangKhuyenMais.ToList());
         }
 
         // GET: Admin/BangKhuyenMais/Details/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/BangKhuyenMais/Create
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Create()
         {
             return View();
@@ -60,6 +63,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/BangKhuyenMais/Edit/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -91,6 +95,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/BangKhuyenMais/Delete/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)

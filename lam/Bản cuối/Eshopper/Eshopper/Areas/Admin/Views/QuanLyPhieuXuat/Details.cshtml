@@ -9,7 +9,7 @@
 
 <link href="~/Areas/AssetAdmin/css/indexadmin.css" rel="stylesheet" type="text/css">
 <div class="container-fluid " >
-    <h2>Chi tiết phiếu nhập</h2>
+    <h2>Chi tiết phiếu xuất</h2>
     <p>
         <a href="@Url.Action("Index")" class="btn btn-outline-info">
             Quay lại danh sách
@@ -20,16 +20,14 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.NguoiDung.TenND)
+                    <th>Tên người dùng
                     </th>
 
                     <td>
                         @Html.DisplayFor(model => model.NguoiDung.TenND)
                     </td>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.NgayDat)
+                    <th>Ngày đặt
                     </th>
 
                     <td>
@@ -40,8 +38,7 @@
                             </span>
                         }
                     </td>
-                    <th>
-                        @Html.DisplayNameFor(model => model.NgayShip)
+                    <th>Ngày ship
                     </th>
 
                     <td>

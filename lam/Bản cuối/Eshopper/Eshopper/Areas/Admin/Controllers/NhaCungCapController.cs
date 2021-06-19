@@ -11,17 +11,19 @@ using Eshopper.Models.EF;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class NhaCungCapController : BaseController
+    public class NhaCungCapController : Controller
     {
         private DBModels db = new DBModels();
 
         // GET: Admin/NhaCungCap
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Index()
         {
             return View(db.NhaCCs.ToList());
         }
 
         // GET: Admin/NhaCungCap/Details/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/NhaCungCap/Create
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Create()
         {
             return View();
@@ -51,6 +54,11 @@ namespace Eshopper.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                nhaCC.MaNCC = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds.ToString();
+                while (nhaCC.MaNCC.Contains("."))
+                {
+                    nhaCC.MaNCC = nhaCC.MaNCC.Substring(1, nhaCC.MaNCC.Length - 2);
+                }
                 db.NhaCCs.Add(nhaCC);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,6 +68,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/NhaCungCap/Edit/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -91,6 +100,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/NhaCungCap/Delete/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)

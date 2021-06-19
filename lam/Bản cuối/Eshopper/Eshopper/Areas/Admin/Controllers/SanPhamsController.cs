@@ -14,27 +14,26 @@ using PagedList;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class SanPhamsController : BaseController
+    public class SanPhamsController : Controller
     {
         private DBModels db = new DBModels();
 
         // GET: Admin/SanPhams
-        [Authorize(Roles ="member,amdmin")]
-        public ActionResult Index(int? page, string searchString ="" )
+        [Authorize(Roles = "employee,admin")]
+        public ActionResult Index(int? page, string searchString = "")
         {
             var items = db.SanPhams.ToList();
-            if(searchString != string.Empty)
+            if (searchString != string.Empty)
             {
-                items = items.Where(x => x.TenSP.Contains(searchString)).ToList();
+                items = items.Where(x => x.TenSP.Contains(searchString) || x.MoTa.Contains(searchString)).ToList();
             }
-            var pageNumber = page == null ? 1: page.Value;
-            var data = items.ToPagedList(pageNumber, 10);
+            var pageNumber = page == null ? 1 : page.Value;
+            var data = items.ToPagedList(pageNumber, 7);
             return View(data);
         }
 
-        
-
         // GET: Admin/SanPhams/Details/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -50,6 +49,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/SanPhams/Create
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Create()
         {
             ViewBag.MaKM = new SelectList(db.BangKhuyenMais, "MaKM", "MaKM");
@@ -73,6 +73,12 @@ namespace Eshopper.Areas.Admin.Controllers
                     ViewBag.MaLoaiSP = new SelectList(db.LoaiSPs, "MaLoaiSP", "TenLoai", sanPham.MaLoaiSP);
                     return View(sanPham);
                 }
+                sanPham.MaSP = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds.ToString();
+                while (sanPham.MaSP.Length > 10)
+                {
+                    sanPham.MaSP = sanPham.MaSP.Substring(1, sanPham.MaSP.Length - 2);
+                }
+                CheckSP(sanPham);
                 db.SanPhams.Add(sanPham);
 
                 db.SaveChanges();
@@ -84,7 +90,16 @@ namespace Eshopper.Areas.Admin.Controllers
             return View(sanPham);
         }
 
+        public void CheckSP(SanPham sp)
+        {
+            if(!sp.DonGia.HasValue)
+                ModelState.AddModelError("", @"Hãy nhập giá cho sản phẩm");
+            var km = db.BangKhuyenMais.Find(sp.MaKM);
+            sp.GiaKM = sp.DonGia.Value * (100 - km.TiLeKM.Value) / 100 - km.TienKM.Value;
+        }
+
         // GET: Admin/SanPhams/Edit/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -110,7 +125,7 @@ namespace Eshopper.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(!UploadImage(picture, sanPham))
+                if (!UploadImage(picture, sanPham))
                 {
                     ModelState.AddModelError("", @"Hãy chọn ảnh");
                     ViewBag.MaKM = new SelectList(db.BangKhuyenMais, "MaKM", "MaKM", sanPham.MaKM);
@@ -127,6 +142,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/SanPhams/Delete/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)

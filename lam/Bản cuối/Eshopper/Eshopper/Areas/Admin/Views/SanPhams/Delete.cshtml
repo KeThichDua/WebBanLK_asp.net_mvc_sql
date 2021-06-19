@@ -14,71 +14,42 @@
 <div id="titleadmin">XÓA SẢN PHẨM</div>
 <div style="margin-left: 1%">Bạn có muốn xóa không?</div>
 <div>
-    
+
     <dl class="dl-horizontal" id="customers">
-        <dt>
-            @Html.DisplayNameFor(model => model.BangKhuyenMai.MaKM)
-        </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BangKhuyenMai.MaKM)
+            Tên loại sản phẩm: @Html.DisplayFor(model => model.LoaiSP.TenLoai)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiSP.TenLoai)
-        </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LoaiSP.TenLoai)
+            Tên sản phẩm:       @Html.DisplayFor(model => model.TenSP)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TenSP)
-        </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TenSP)
+            Số lượng:            @Html.DisplayFor(model => model.SoLuong)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SoLuong)
+            Đơn giá:             @Html.DisplayFor(model => model.DonGia)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DonGia)
+            Mô tả:            @Html.DisplayFor(model => model.MoTa)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MoTa)
+            Giá khuyến mại:            @Html.DisplayFor(model => model.GiaKM)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GiaKM)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GiaKM)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.URLAnh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.URLAnh)
-        </dd>
+        Ảnh sản phẩm
+        <div id="images-group">
+            @if (Model.URLAnh != null)
+            {
+                <div class="multiple-images-wrapper col-md-2">
+                    <img src="@Path.Combine(Model.URLAnh)" class="img-thumbnail" />
+                </div>
+            }
+        </div>
 
     </dl>
 
@@ -87,8 +58,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color" style="margin: 1%">
-            <input type="submit" value="Xóa" class="btn btn-default" style="width:8%"/> 
-            
+            <input type="submit" value="Xóa" class="btn btn-default" style="width:8%" />
+
         </div>
         <div style="margin: 1%">
             @Html.ActionLink("Quay lại", "Index")

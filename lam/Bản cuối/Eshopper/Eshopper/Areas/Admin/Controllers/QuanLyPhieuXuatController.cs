@@ -9,10 +9,11 @@ using System.Web.Mvc;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class QuanLyPhieuXuatController : BaseController
+    public class QuanLyPhieuXuatController : Controller
     {
         private DBModels _db = new DBModels();
         // GET: Admin/QuanLyPhieuNhap
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Index()
         {
             var item = _db.PhieuXuats.ToList();
@@ -20,6 +21,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Create()
         {
             ViewBag.SanPhams = _db.SanPhams.ToList();
@@ -138,6 +140,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Details(string maPX)
         {
             var model = _db.PhieuXuats.Find(maPX);
@@ -146,6 +149,7 @@ namespace Eshopper.Areas.Admin.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Update(string maPX)
         {
             var model = _db.PhieuXuats.Find(maPX);

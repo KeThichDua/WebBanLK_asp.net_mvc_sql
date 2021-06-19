@@ -8,26 +8,13 @@
 <link href="~/Areas/AssetAdmin/css/indexadmin.css" rel="stylesheet" type="text/css">
 
 <div class="container-fluid" id="customers">
-    <h2>Danh sách người dùng</h2>
-    <p>
-        <a class="btn btn-primary" href="@Url.Action("Register")">
-            Tạo tài khoản mới
-        </a>
-        <a class="btn btn-success" href="@Url.Action("Login")">
-            Đăng nhập
-        </a>
-    </p>
+    <h2>Phân quyền người dùng</h2>
+    
 
     <table class="table table-striped table-bordered">
         <tr>
             <th>
                 Tên người dùng
-            </th>
-            <th>
-                Số điện thoại
-            </th>
-            <th>
-                Địa chỉ
             </th>
             <th>
                 Email
@@ -43,12 +30,6 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenND)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SDT)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)

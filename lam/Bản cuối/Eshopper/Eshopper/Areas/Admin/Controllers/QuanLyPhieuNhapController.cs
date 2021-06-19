@@ -9,10 +9,11 @@ using System.Web.Mvc;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class QuanLyPhieuNhapController : BaseController
+    public class QuanLyPhieuNhapController : Controller
     {
-        private DBModels _db = new DBModels(); 
+        private DBModels _db = new DBModels();
         // GET: Admin/QuanLyPhieuNhap
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Index()
         {
             var item = _db.PhieuNhaps.ToList();
@@ -20,6 +21,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "employee,admin")]
         public ActionResult CreateForNhaCC()
         { 
             ViewBag.SanPhams = _db.SanPhams.ToList();
@@ -130,6 +132,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Update(string maPN)
         {
             var model = _db.PhieuNhaps.Find(maPN);
@@ -173,16 +176,13 @@ namespace Eshopper.Areas.Admin.Controllers
             }
         }
 
-
-
         [HttpGet]
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Details(string maPN)
         {
             var model = _db.PhieuNhaps.Find(maPN);
             return View(model);
         }
-
-
 
         [HttpPost]
         public ActionResult DeletePhieuNhap(string maPN)

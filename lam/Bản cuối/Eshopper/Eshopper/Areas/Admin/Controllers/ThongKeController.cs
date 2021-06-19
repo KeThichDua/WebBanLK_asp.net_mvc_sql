@@ -14,12 +14,13 @@ using System.Web.Mvc;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class ThongKeController : BaseController
+    public class ThongKeController : Controller
     {
         // GET: Admin/ThongKe
         private string connectString = ConfigurationManager.ConnectionStrings["DBModels"].ToString();
         private string _path = @"F:\";
         [HttpGet]
+        [Authorize(Roles = "employee,admin")]
         public ActionResult ThongKe()
         {
             var model = new ThongKeViewModel()
@@ -32,6 +33,7 @@ namespace Eshopper.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
+        [Authorize(Roles = "employee,admin")]
         public ActionResult ThongKeForTime()
         {
             return View();

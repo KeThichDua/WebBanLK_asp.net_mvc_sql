@@ -11,17 +11,19 @@ using Eshopper.Models.EF;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class LoaiSPsController : BaseController
+    public class LoaiSPsController : Controller
     {
         private DBModels db = new DBModels();
 
         // GET: Admin/LoaiSPs
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Index()
         {
             return View(db.LoaiSPs.ToList());
         }
 
         // GET: Admin/LoaiSPs/Details/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiSPs/Create
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Create()
         {
             return View();
@@ -51,6 +54,11 @@ namespace Eshopper.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                loaiSP.MaLoaiSP = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds.ToString();
+                while (loaiSP.MaLoaiSP.Contains("."))
+                {
+                    loaiSP.MaLoaiSP = loaiSP.MaLoaiSP.Substring(1, loaiSP.MaLoaiSP.Length - 2);
+                }
                 db.LoaiSPs.Add(loaiSP);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,6 +68,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiSPs/Edit/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -91,6 +100,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiSPs/Delete/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)

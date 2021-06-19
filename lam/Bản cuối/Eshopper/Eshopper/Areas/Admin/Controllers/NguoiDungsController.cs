@@ -11,11 +11,12 @@ using Eshopper.Models.EF;
 
 namespace Eshopper.Areas.Admin.Controllers
 {
-    public class NguoiDungsController : BaseController
+    public class NguoiDungsController : Controller
     {
         private DBModels db = new DBModels();
 
         // GET: Admin/NguoiDungs
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Index()
         {
             var nguoiDungs = db.NguoiDungs.Include(n => n.LoaiND);
@@ -23,6 +24,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/NguoiDungs/Details/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/NguoiDungs/Create
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Create()
         {
             ViewBag.MaLoaiND = new SelectList(db.LoaiNDs, "MaLoaiND", "TenLoai");
@@ -63,6 +66,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/NguoiDungs/Edit/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -96,6 +100,7 @@ namespace Eshopper.Areas.Admin.Controllers
         }
 
         // GET: Admin/NguoiDungs/Delete/5
+        [Authorize(Roles = "employee,admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -116,6 +121,13 @@ namespace Eshopper.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             NguoiDung nguoiDung = db.NguoiDungs.Find(id);
+
+            var checkPX = db.PhieuXuats.Any(x => x.MaND == id);
+            if (checkPX)
+            {
+                ModelState.AddModelError("", @"Vui lòng xóa hoặc sửa phiếu xuất của người dùng này trước.");
+                return View(nguoiDung);
+            }
             db.NguoiDungs.Remove(nguoiDung);
             db.SaveChanges();
             return RedirectToAction("Index");
