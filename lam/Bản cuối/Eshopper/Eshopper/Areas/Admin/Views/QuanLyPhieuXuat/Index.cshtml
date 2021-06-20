@@ -9,22 +9,30 @@
     <h2>Danh sách phiếu xuất</h2>
 
     @*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
     <table class="table">
         <tr>
-            <th>Số điện thoại:
+            <th>STT@{int a = 0;}</th>
+
+            <th>
+                Số điện thoại:
             </th>
-            <th>Ngày đặt:
+            <th>
+                Ngày đặt:
             </th>
-            <th>Ngày ship:
+            <th>
+                Ngày ship:
             </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
+            a++;
             <tr id="row-@item.MaPX">
+                <td>@a</td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.NguoiDung.SDT)
                 </td>

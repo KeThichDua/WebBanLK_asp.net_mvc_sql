@@ -5,23 +5,19 @@
     Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn chắc muốn xóa khuyến mại này?</h3>
 <div>
-    <h4>BangKhuyenMai</h4>
+    <h4>Khuyến mại: @Model.MaKM</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TienKM)
+        <dt>Tiền khuyến mại:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.TienKM)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TiLeKM)
+        <dt>Tỉ lệ khuyến mại:
         </dt>
 
         <dd>
@@ -34,8 +30,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xác nhận" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại", "Index")
         </div>
     }
 </div>

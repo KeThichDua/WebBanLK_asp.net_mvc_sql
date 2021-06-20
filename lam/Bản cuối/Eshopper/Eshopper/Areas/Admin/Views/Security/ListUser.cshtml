@@ -9,10 +9,11 @@
 
 <div class="container-fluid" id="customers">
     <h2>Phân quyền người dùng</h2>
-    
+
 
     <table class="table table-striped table-bordered">
         <tr>
+            <th>STT@{int a = 0;}</th>
             <th>
                 Tên người dùng
             </th>
@@ -27,7 +28,11 @@
 
         @foreach (var item in Model)
         {
+            a++;
+
             <tr>
+
+                <td>@a</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenND)
                 </td>

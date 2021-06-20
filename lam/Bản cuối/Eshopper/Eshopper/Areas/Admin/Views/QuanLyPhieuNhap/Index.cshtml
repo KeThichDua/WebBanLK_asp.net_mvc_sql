@@ -15,21 +15,28 @@
     </p>
     <table class="table">
         <tr>
-            <th>Tên nhà cung cấp
+            <th>STT@{int a = 0;}</th>
+
+            <th>
+                Tên nhà cung cấp
             </th>
-            <th>Ngày nhập
+            <th>
+                Ngày nhập
             </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
+            a++;
             <tr id="row-@item.MaPN.TrimEnd()">
+
+                <td>@a</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NhaCC.Ten)
                 </td>
                 <td>
-                    @if(item.NgayNhap != null)
+                    @if (item.NgayNhap != null)
                     {
                         <span>
                             @item.NgayNhap.Value.ToString("dd/MM/yyyy")
@@ -73,5 +80,5 @@
                 })
             }
         }
-    </script>    
+    </script>
 }

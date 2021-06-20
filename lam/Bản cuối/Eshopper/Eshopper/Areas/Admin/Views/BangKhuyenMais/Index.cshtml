@@ -9,21 +9,20 @@
 
 
 
-<div id="titleadmin">QUẢN LÝ MÃ KHUYẾN MÃI</div>
+<div id="titleadmin">QUẢN LÝ MÃ KHUYẾN MẠI</div>
 
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
+@{ int a = 0;}
 <table class="table" id="customers">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MaKM)
+        <th>STT</th>
+        <th>Code khuyến mại:
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TienKM)
+        <th>Tiền khuyến mại:
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TiLeKM)
+        <th>Tỉ lệ khuyến mại:
         </th>
         <th style="width:80px">
             <a href="@Url.Action("Create", "BangKhuyenMais")"><img src="~/Assets/images/icons/add.png" style="margin-left:35%" /></a>
@@ -32,7 +31,9 @@
 
     @foreach (var item in Model)
     {
+        a++;
         <tr>
+            <td>@a</td>
             <td>
                 @Html.DisplayFor(modelItem => item.MaKM)
             </td>
