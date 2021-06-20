@@ -13,9 +13,6 @@
                 Đơn hàng ngày
             </th>
             <th>
-                Ngày Ship
-            </th>
-            <th>
                 Trạng thái
             </th>
             <th></th>
@@ -29,20 +26,19 @@
                     @Html.DisplayFor(modelItem => item.NgayDat)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayShip)
-                </td>
-                <td>
                     @if (item.NgayShip == null)
                     {
                         <b> Đã hủy </b>
                     }
                     else if (item.NgayShip > DateTime.Now)
                     {
-                        <b> Đang giao hàng </b>
+                        <b> Đã giao hàng </b>
                     }
                     else
+
                     {
-                        <b> Đã giao </b>
+                        <b> Đang giao hàng </b>
+                        
                     }
                 </td>
                 <td>
@@ -50,7 +46,8 @@
                     {
                         <a href="/PhieuXuat/Cancel?id=@item.MaPX">@*@Html.Action("Cancel", "PhieuXuat", new { id = item.MaPX })*@ Hủy đơn</a>
                     }
-                    | @Html.ActionLink("Chi tiết đơn hàng", "Details", new { id = item.MaPX })
+                    |<a href="/PhieuXuat/Details?id=@item.MaPX" >Chi tiết đơn hàng</a>
+
                 </td>
             </tr>
         }

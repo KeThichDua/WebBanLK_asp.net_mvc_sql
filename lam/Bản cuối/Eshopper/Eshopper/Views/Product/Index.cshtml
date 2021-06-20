@@ -61,14 +61,7 @@
 
                     </div><!--/brands_products-->
 
-                    <div class="price-range">
-                        <!--price-range-->
-                        <h2>Mức giá</h2>
-                        <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="1000" data-slider-max="50000000" data-slider-step="5" data-slider-value="[1000,1000000]" id="sl2"><br />
-                            <b class="pull-left">1000</b> <b class="pull-right">50000000</b>
-                        </div>
-                    </div><!--/price-range-->
+                    
 
                     <div class="shipping text-center">
                         <!--shipping-->
@@ -112,8 +105,8 @@
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
-                                        <li><a href=""><i class="fa fa-plus-square"></i>Thêm vào ưu thích</a></li>
-                                        <li><a href="/Product/ProductDetail?id=@item.MaSP"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>
+                                        
+                                        <li><a href="/Product/ProductDetail?id=@item.MaSP&ncc=@item.MaNCC"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -125,7 +118,7 @@
                 <br />
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page })) @* biến page, action : chỉ đên controller*@
                 <!-- Kết thúc -->
             </div>
 

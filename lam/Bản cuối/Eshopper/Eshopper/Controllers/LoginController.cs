@@ -36,6 +36,7 @@ namespace Eshopper.Controllers
                     NguoiDungSession.Email = NguoiDung.Email;
                     NguoiDungSession.ID = NguoiDung.MaND;
                     NguoiDungSession.UserName = NguoiDung.UserName;
+                    var list = new List<CartItem>();
 
                     // kiểm tra giỏ hàng trong db
                     GioHang gh = db.GioHangs.SingleOrDefault(x => x.MaND == NguoiDung.MaND); // lấy giỏ hàng của người dùng hiện tại
@@ -52,9 +53,23 @@ namespace Eshopper.Controllers
                         db.GioHangs.Add(gh);
                         db.SaveChanges();
                     }
+                    //else
+                    //{
+                    //    foreach (var item in db.CTGioHangs)
+                    //    {
+                    //        if (item.MaGH == gh.MaGH)
+                    //        {
+                    //            var t = new CartItem();
+                    //            //var SanPham = new SanPhamDAO().ViewDetail(item.MaSP);
+                    //            t.SanPham = item.SanPham;
+                    //            t.Quantity = (int)item.SoLuong;
+                    //            list.Add(t);
+                    //        }
+                    //    }
+                    //}
 
                     Session.Add(CommomConstants.NguoiDungSession, NguoiDungSession);
-                   
+
                     return RedirectToAction("Index", "Home");
                 }
                 else

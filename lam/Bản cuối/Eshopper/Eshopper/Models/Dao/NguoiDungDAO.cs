@@ -42,6 +42,10 @@ namespace Eshopper.Models.Dao
         {
             return db.NguoiDungs.Find(id);
         }
+        public List<NguoiDung> ListAll()
+        {
+            return db.NguoiDungs.ToList();
+        }
         //public bool Update(NguoiDung entity)
         //{
         //    try

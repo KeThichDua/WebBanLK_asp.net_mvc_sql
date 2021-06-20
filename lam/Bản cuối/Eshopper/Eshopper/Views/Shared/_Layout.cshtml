@@ -1,4 +1,5 @@
 ﻿@using Eshopper.Commom
+@using Eshopper.Models.EF
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,12 +34,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> 0853535697</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i>leduydat99@gmail.com</a></li>
-                            </ul>
-                        </div>
+      
                     </div>
                     <div class="col-sm-6">
                         <div class="social-icons pull-right">
@@ -80,9 +76,9 @@
                                     var sessnd = Session[CommomConstants.NguoiDungSession];
                                     var nd = new NguoiDungLogin();
                                     nd = (NguoiDungLogin)sessnd;
-                                    <li><a href="#"><i class="fa fa-user"></i> Chào mừng, @nd.UserName</a></li>
+                                    <li><a href="/NguoiDung/NguoiDungDetail"><i class="fa fa-user"></i> Chào mừng, @nd.UserName</a></li>
                                     <li><a href="/PhieuXuat"><i class="fa fa-star"></i> Lịch sử đơn hàng</a></li>
-                                    @*<li><a href="/Checkout"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>*@
+                                    
                                     <li><a href="/Card"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                                     <li><a href="/Login"><i class="fa fa-lock"></i> Đăng xuất</a></li>
                                 }
@@ -178,7 +174,7 @@
             <div class="container">
                 <div class="row">
                     <p class="pull-left">236 Hoàng Quốc Việt, Hà Nội</p>
-                    <p class="pull-right">Thiết kế bởi <span><a target="_blank" href="#">Đạt</a></span></p>
+                    <p class="pull-right">Thiết kế bởi <span><a target="_blank" href="#">Hiếu</a></span></p>
                 </div>
             </div>
         </div>

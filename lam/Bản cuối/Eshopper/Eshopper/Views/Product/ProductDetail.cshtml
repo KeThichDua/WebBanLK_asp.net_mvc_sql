@@ -43,14 +43,7 @@
 
                     </div><!--/brands_products-->
 
-                    <div class="price-range">
-                        <!--price-range-->
-                        <h2>Mức giá</h2>
-                        <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="1000" data-slider-max="50000000" data-slider-step="5" data-slider-value="[1000,1000000]" id="sl2"><br />
-                            <b class="pull-left">1000</b> <b class="pull-right">50000000</b>
-                        </div>
-                    </div><!--/price-range-->
+
 
                     <div class="shipping text-center">
                         <!--shipping-->
@@ -60,35 +53,36 @@
                 </div>
             </div>
             @{var sp = Model.SanPhams.Find(ViewBag.id); }
+            @{var ncc = Model.NhaCCs.Find(ViewBag.ncc); }
             <div class="col-sm-9 padding-right">
                 <div class="product-details">
                     <!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
                             <img src="@sp.URLAnh" alt="" />
-                            <h3>ZOOM</h3>
+
                         </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">
 
                             <!-- Wrapper for slides -->
                             @*<div class="carousel-inner">
-                                    <div class="item active">
-                                        <a href=""><img src="/Assets/images/product-details/similar1.jpg" alt=""></a>
-                                        <a href=""><img src="/Assets/images/product-details/similar2.jpg" alt=""></a>
-                                        <a href=""><img src="/Assets/images/product-details/similar3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href=""><img src="/Assets/images/product-details/similar1.jpg" alt=""></a>
-                                        <a href=""><img src="/Assets/images/product-details/similar2.jpg" alt=""></a>
-                                        <a href=""><img src="/Assets/images/product-details/similar3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href=""><img src="/Assets/images/product-details/similar1.jpg" alt=""></a>
-                                        <a href=""><img src="/Assets/images/product-details/similar2.jpg" alt=""></a>
-                                        <a href=""><img src="/Assets/images/product-details/similar3.jpg" alt=""></a>
-                                    </div>
+                            <div class="item active">
+                                <a href=""><img src="/Assets/images/product-details/similar1.jpg" alt=""></a>
+                                <a href=""><img src="/Assets/images/product-details/similar2.jpg" alt=""></a>
+                                <a href=""><img src="/Assets/images/product-details/similar3.jpg" alt=""></a>
+                            </div>
+                            <div class="item">
+                                <a href=""><img src="/Assets/images/product-details/similar1.jpg" alt=""></a>
+                                <a href=""><img src="/Assets/images/product-details/similar2.jpg" alt=""></a>
+                                <a href=""><img src="/Assets/images/product-details/similar3.jpg" alt=""></a>
+                            </div>
+                            <div class="item">
+                                <a href=""><img src="/Assets/images/product-details/similar1.jpg" alt=""></a>
+                                <a href=""><img src="/Assets/images/product-details/similar2.jpg" alt=""></a>
+                                <a href=""><img src="/Assets/images/product-details/similar3.jpg" alt=""></a>
+                            </div>
 
-                                </div>*@
+                        </div>*@
 
                             <!-- Controls -->
                             <a class="left item-control" href="#similar-product" data-slide="prev">
@@ -103,7 +97,7 @@
                     <div class="col-sm-7">
                         <div class="product-information">
                             <!--/product-information-->
-                            <img src="/Assets/images/product-details/new.jpg" class="newarrival" alt="" />
+
                             <h2>@sp.TenSP</h2>
                             <img src="/Assets/images/product-details/rating.png" alt="" />
                             <span>
@@ -117,15 +111,17 @@
                                 }
                                 <span>Giá mới : @sp.GiaKM đ</span>
                                 @*<label>Số lượng:</label>
-                                <input type="text" value="1" />*@
+                            <input type="text" value="1" />*@
                                 <button type="button" class="btn btn-fefault cart">
-                                    <a href="/Card/AddItem?id=@sp.MaSP&quantity=1"><i class="fa fa-shopping-cart"></i>
-                                    Thêm vào giỏ hàng</a>
-                                </button>                             
+                                    <a href="/Card/AddItem?id=@sp.MaSP&quantity=1">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Thêm vào giỏ hàng
+                                    </a>
+                                </button>
                             </span>
                             <p><b>Số lượng còn:</b> @sp.SoLuong</p>
                             @*<p><b>Condition</b> New</p>*@
-                            <p><b>Hãng sản xuất:</b> E-SHOPPER</p>
+                            <p><b>Hãng sản xuất:</b> @ncc.Ten</p>
                             <a href=""><img src="/Assets/images/product-details/share.png" class="share img-responsive" alt="" /></a>
                         </div><!--/product-information-->
                     </div>
@@ -146,15 +142,15 @@
 
                                 <h>@sp.MoTa</h>
 
-                            </div> 
+                            </div>
                         </div>
 
                         <div class="tab-pane fade" id="companyprofile">
                             <div class="">
-                                @ViewBag.ncc.Ten
-                                @ViewBag.ncc.DiaChi
-                                @ViewBag.ncc.Email
-                                @ViewBag.ncc.SDT
+                                @ncc.Ten
+                                @ncc.DiaChi
+                                @ncc.Email
+                                @ncc.SDT
                             </div>
 
                         </div>
@@ -162,11 +158,11 @@
                         <div class="tab-pane fade active in" id="reviews">
                             <div class="col-sm-12">
                                 @*<ul>
-                                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                                </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>*@
+                                <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
+                                <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
+                                <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
+                            </ul>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>*@
                                 <p><b>Để lại đánh giá của bạn:</b></p>
 
                                 <form action="#">
@@ -190,18 +186,18 @@
                     <!--recommended_items-->
                     <h2 class="title text-center">
                         Sản phẩm đề xuất<h2>
-                        @{ 
-                            int dem = 0;
-                            List<SanPham> listsp = new List<SanPham>();
-                            foreach(var item in Model.SanPhams)
-                            {
-                                if(item.MaLoaiSP != sp.MaLoaiSP)
+                            @{
+                                int dem = 0;
+                                List<SanPham> listsp = new List<SanPham>();
+                                foreach (var item in Model.SanPhams)
                                 {
-                                    continue;
+                                    if (item.MaLoaiSP != sp.MaLoaiSP)
+                                    {
+                                        continue;
+                                    }
+                                    listsp.Add(item);
                                 }
-                                listsp.Add(item);
                             }
-                        }
                             <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
 
@@ -231,36 +227,36 @@
                                             }
 
                                         }
-                                    </div>    
-                                    
-                                <div class="item">
-                                    @foreach (var item in listsp)
-                                    {
+                                    </div>
 
-                                        <div class="col-sm-4">
-                                            <div class="product-image-wrapper">
-                                                <div class="single-products">
-                                                    <div class="productinfo text-center">
-                                                        <img src="@item.URLAnh" alt="" style="width:210px;height:210px;" />
-                                                        <h2>@item.GiaKM đ</h2>
-                                                        <p>@item.TenSP</p>
-                                                        <a href="/Card/AddItem?id=@item.MaSP&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                    <div class="item">
+                                        @foreach (var item in listsp)
+                                        {
+
+                                            <div class="col-sm-4">
+                                                <div class="product-image-wrapper">
+                                                    <div class="single-products">
+                                                        <div class="productinfo text-center">
+                                                            <img src="@item.URLAnh" alt="" style="width:210px;height:210px;" />
+                                                            <h2>@item.GiaKM đ</h2>
+                                                            <p>@item.TenSP</p>
+                                                            <a href="/Card/AddItem?id=@item.MaSP&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                        </div>
+
                                                     </div>
 
                                                 </div>
-                                                
                                             </div>
-                                        </div>
-                                        dem++;
-                                        if (dem == 3)
-                                        {
-                                            dem = 0;
-                                            break;
+                                            dem++;
+                                            if (dem == 3)
+                                            {
+                                                dem = 0;
+                                                break;
+                                            }
                                         }
-                                    }
-                                </div>
-
                                     </div>
+
+                                </div>
                                 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                                     <i class="fa fa-angle-left"></i>
                                 </a>

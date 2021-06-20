@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "CheckOutIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model List<Eshopper.Commom.CartItem>
+
+
+<section id="cart_items">
+    <div class="container">
+        <div class="shopper-informations">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="shopper-info">
+                        <p>Thông tin người mua hàng</p>
+                        <form>
+                            <input type="text" placeholder="Tên hiển thị">
+                            <input type="text" placeholder="Tên tài khoản">
+                            <input type="password" placeholder="Mật khẩu">
+                            <input type="password" placeholder="Xác nhận mật khẩu">
+                        </form>
+                        <a class="btn btn-primary" href="/Card/Check">Thanh toán</a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="order-message">
+                        <p>Đơn hàng vận chuyển</p>
+                        <textarea name="message" placeholder="Ghi chú về đơn đặt hàng của bạn, Ghi chú đặc biệt khi giao hàng" rows="16"></textarea>
+                        <label><input type="checkbox"> Vận chuyển đến địa chỉ thanh toán</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="review-payment">
+            <h2>Xem lại các mặt hàng </h2>
+        </div>
+
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Mặt hàng</td>
+                        <td class="description"></td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số lượng</td>
+                        <td class="total">Tổng tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href=""><img src="@item.SanPham.URLAnh" alt="ảnh sản phẩ" style="width:105px;height:105px;"></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="">@item.SanPham.TenSP</a></h4>
+                            </td>
+                            <td class="cart_price">
+                                <p>@item.SanPham.DonGia</p>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@(Convert.ToInt32(item.SanPham.DonGia) * Convert.ToInt32(item.Quantity)) VND</p>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section> <!--/#cart_items-->
+
+
+
+
+
+

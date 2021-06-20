@@ -11,7 +11,7 @@ namespace Eshopper.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Index(int? page, string searchString = "")
+        public ActionResult Index(int? page, string searchString = "") 
         {
             // 1. Tham số int? dùng để thể hiện null và kiểu int
             // page có thể có giá trị là null và kiểu int.
@@ -88,19 +88,19 @@ namespace Eshopper.Controllers
                             }
                             break;
                         case 2:
-                            if(item.CTPhieuNhaps.Count > 0)
+                            if(item.MaNCC == id)
                             {
                                 list.Add(item);
                             }
                             break;
                         case 3:
-                            if(item.CTGioHangs.Count > 0 || item.CTPhieuXuats.Count < 0)
+                            if(item.SoLuong <= 14)
                             {
                                 list.Add(item);
                             }
                             break;
                         case 4:
-                            if (item.MaKM == null)
+                            if (item.MaKM != null)
                             {
                                 list.Add(item);
                             }
@@ -125,7 +125,7 @@ namespace Eshopper.Controllers
             return View(links.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult ProductDetail(string id)
+        public ActionResult ProductDetail(string id, string ncc)
         {
             while (id.Length < 10)
             {
@@ -133,7 +133,7 @@ namespace Eshopper.Controllers
             }
             
             DBModels db = new DBModels();
-            var ncc = db.NhaCCs.Find("ncc1"); 
+            
 
             ViewBag.id = id;
             ViewBag.ncc = ncc;

@@ -32,7 +32,7 @@ namespace Eshopper.Controllers
                 {
                     list = (List<CartItem>)cart;
                 }
-                ViewBag.idgh = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds.ToString();
+                ViewBag.idgh = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds.ToString(); // tạo id tạm dựa trên thời gian
                 while (ViewBag.idgh.Length > 10)
                 {
                     ViewBag.idgh = ViewBag.idgh.Substring(1, ViewBag.idgh.Length - 2);
@@ -65,8 +65,8 @@ namespace Eshopper.Controllers
 
         public ActionResult AddItem(string id, int quantity)
         {
-            var SanPham = new SanPhamDAO().ViewDetail(id);
-            var cart = Session[CommomConstants.CartSession];
+            var SanPham = new SanPhamDAO().ViewDetail(id); 
+            var cart = Session[CommomConstants.CartSession]; 
 
             // lấy về người đăng nhập hiện tại
             var sessnd = Session[CommomConstants.NguoiDungSession];
@@ -78,18 +78,18 @@ namespace Eshopper.Controllers
             {
                 if (cart != null)
                 {
-                    var list = (List<CartItem>)cart;
-                    if (list.Exists(x => x.SanPham.MaSP == id))
+                    var list = (List<CartItem>)cart; //ép kiểu về list cartitem lấy từ session(dữ liệu trong session là kiểu list
+                    if (list.Exists(x => x.SanPham.MaSP == id)) //nếu list chứa productid truyền vào
                     {
-                        foreach (var item in list)
+                        foreach (var item in list) 
                         {
-                            if (item.SanPham.MaSP == id)
+                            if (item.SanPham.MaSP == id) // nếu đã tồn tại id mà thêm một id => tăng thêm số lượng
                             {
                                 item.Quantity += quantity;
                             }
                         }
                     }
-                    else
+                    else // add mới một sản phẩm
                     {
                         //tạo mới đối tượng cart item
                         var item = new CartItem();
@@ -106,7 +106,7 @@ namespace Eshopper.Controllers
                     var item = new CartItem();
                     item.SanPham = SanPham;
                     item.Quantity = quantity;
-                    var list = new List<CartItem>();
+                    var list = new List<CartItem>(); 
                     list.Add(item);
                     //Gán vào Session
                     Session[CommomConstants.CartSession] = list;
@@ -139,8 +139,93 @@ namespace Eshopper.Controllers
 
             return RedirectToAction("Index");
         }
+        public ActionResult CheckOutIndex()
+        {
+            var cart = Session[CommomConstants.CartSession];
+            var list = new List<CartItem>();
+            if (cart != null)
+            {
+                list = (List<CartItem>)cart;
+            }
+            Session[CommomConstants.CartSession] = list;
+            return View(list);
+        }
 
-        public ActionResult Delete(string id)
+        
+        public ActionResult Check()
+        {
+            //lấy về giỏ hàng hiện tại
+            var cart = Session[CommomConstants.CartSession];
+            var list = new List<CartItem>();
+            list = (List<CartItem>)cart;
+            DBModels db = new DBModels();
+
+            // lấy về người đăng nhập hiện tại
+            var sessnd = Session[CommomConstants.NguoiDungSession];
+            var nd = new NguoiDungLogin();
+            nd = (NguoiDungLogin)sessnd;
+
+            if (nd == null)
+            {
+                var px = new PhieuXuat();
+                px.MaND = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds.ToString();
+                while (px.MaND.Length > 10)
+                {
+                    px.MaND = px.MaND.Substring(1, px.MaND.Length - 2);
+                }
+                px.MaPX = px.MaND;
+                px.NgayDat = DateTime.Now;
+                px.NgayShip = DateTime.Now;
+                db.PhieuXuats.Add(px);
+
+                var kvl = new NguoiDung();
+                kvl.MaND = px.MaND;
+                db.NguoiDungs.Add(kvl);
+
+                
+
+                db.SaveChanges();
+                //Gán vào session
+                Session[CommomConstants.CartSession] = null;
+                return RedirectToAction("Success", "Card");
+            }
+            else
+            {
+                var px = new PhieuXuat();
+                px.MaPX = (DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds.ToString();
+                while (px.MaPX.Length > 10)
+                {
+                    px.MaPX = px.MaPX.Substring(1, px.MaPX.Length - 2);
+                }
+                px.MaND = nd.ID;
+                px.NgayDat = DateTime.Now.Date;
+                px.NgayShip = DateTime.Now.Date;
+                db.PhieuXuats.Add(px);
+
+                foreach (var i in list) //list cac san pham trong gio hang
+                {
+                    db.CTPhieuXuats.Add(new CTPhieuXuat //them tuong ung vao phieu xuat
+                    {
+                        MaPX = px.MaPX,
+                        MaSP = i.SanPham.MaSP,
+                        SoLuong = i.Quantity
+                    });
+                }
+                //list.Clear();
+                db.SaveChanges();
+                //Gán vào session
+                Session[CommomConstants.CartSession] = list;
+                return RedirectToAction("Success", "Card");
+            }
+            //return RedirectToAction("Index", "Card");
+        }
+        public ActionResult Success()
+        {
+            return View();
+        }
+    
+
+    public ActionResult Delete(string id)
         {   
             while(id.Length < 10)
             {
@@ -158,7 +243,7 @@ namespace Eshopper.Controllers
             {
                 foreach (var item in list.ToList())
                 {
-                    if (item.SanPham.MaSP == id)
+                    if (item.SanPham.MaSP == id) //kiểm tra id của sản phẩm trong giỏ hàng trùng với id chuyền vào => xóa sản phẩm 
                     {
                         list.Remove(item);
                     }
@@ -179,19 +264,8 @@ namespace Eshopper.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        //[HttpGet]
-        //public ActionResult PayMent()
-        //{
-        //    var cart = Session[CommomConstants.CartSession];
-        //    var list = new List<CartItem>();
-        //    if (cart != null)
-        //    {
-        //        list = (List<CartItem>)cart;
-        //    }
-        //    return View(list);
-        //}
-
+       
+        
         //public ActionResult Payment1()
         //{
         //    //OrderDao orderdao = ViewBag.OrderDao;

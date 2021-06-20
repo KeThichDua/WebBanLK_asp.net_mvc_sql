@@ -1,0 +1,101 @@
+﻿@model List<Eshopper.Commom.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ;
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="shopper-informations">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="shopper-info">
+                        <p>Thông tin người mua hàng</p>
+                        <form>
+                            <input type="text" placeholder="Tên hiển thị" width="500">
+                            <input type="text" placeholder="Tên tài khoản" width="500">
+                            <input type="password" placeholder="Mật khẩu" width="500">
+                            <input type="password" placeholder="Xác nhận mật khẩu" width="500">
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="order-message">
+                        <p>Đơn hàng vận chuyển</p>
+                        <textarea name="message" placeholder="Ghi chú về đơn đặt hàng của bạn, Ghi chú đặc biệt khi giao hàng" rows="16"></textarea>
+                        <label><input type="checkbox"> Vận chuyển đến địa chỉ thanh toán</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="review-payment">
+            <h2>Xem lại và Thanh toán </h2>
+        </div>
+
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Mặt hàng</td>
+                        <td class="description"></td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số lượng</td>
+                        <td class="total">Tổng tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int? tong = 0;}
+                    @foreach (var item in Model)
+                    {
+                        tong += item.Quantity * item.SanPham.DonGia;
+                        <tr>
+                            <td class="cart_product">
+                                <a href=""><img src="@item.SanPham.URLAnh" alt="ảnh sản phẩm" style="width:105px;height:105px;"></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="">@item.SanPham.TenSP</a></h4>
+                            </td>
+                            <td class="cart_price">
+                                <p>@item.SanPham.DonGia</p>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="@item.Quantity" autocomplete="off" size="2" readonly>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">@(Convert.ToInt32(item.SanPham.DonGia) * Convert.ToInt32(item.Quantity)) VND</p>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+        
+    </div>
+
+</section> <!--/#cart_items-->
+<section id="do_action">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="total_area">
+                    <ul>
+                        <li>Tổng tiền sản phẩm <span>@(tong) đ</span></li>
+                        <li>Phí ship <span>Free</span></li>
+                        <li>Tổng tiền phải trả <span>@tong đ </span></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<a class="btn btn-primary" href="/Card/PayMentSuccess" >Thanh toán</a>
+

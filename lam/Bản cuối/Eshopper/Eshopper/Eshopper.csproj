@@ -156,7 +156,6 @@
     <Compile Include="Commom\NguoiDungLogin.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CardController.cs" />
-    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -168,7 +167,7 @@
     <Compile Include="Models\Dao\BangKhuyenMaiDAO.cs" />
     <Compile Include="Models\Dao\LoaiNDDAO.cs" />
     <Compile Include="Models\Dao\LoaiSanPhamDAO.cs" />
-    <Compile Include="Models\Dao\LoginModel.cs" />
+    <Compile Include="Models\EF\LoginModel.cs" />
     <Compile Include="Models\Dao\NguoiDungDAO.cs" />
     <Compile Include="Models\Dao\NhaCCDAO.cs" />
     <Compile Include="Models\Dao\SanPhamDAO.cs" />
@@ -2296,7 +2295,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Card\Index.cshtml" />
-    <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
@@ -2304,6 +2302,8 @@
     <Content Include="Views\Product\Loc.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\PhieuXuat\Details.cshtml" />
+    <Content Include="Views\Card\CheckOutIndex.cshtml" />
+    <Content Include="Views\Card\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

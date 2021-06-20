@@ -1,0 +1,46 @@
+﻿@model Eshopper.Models.EF.NguoiDung
+@{
+    ViewBag.Title = "NguoiDungDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="section group">
+        <div class="content_top">
+            <div class="heading">
+                <h3>Hồ sơ khách hàng</h3>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <table class="tblone">
+            <tr>
+                <td>Tên</td>
+                <td>:</td>
+                <td>@Model.TenND</td>
+            </tr>
+            <tr>
+                <td>Giới tính</td>
+                <td>:</td>
+                <td>@Model.GioiTinh</td>
+            </tr>
+            <tr>
+                <td>Số điện thoại</td>
+                <td>:</td>
+                <td>@Model.SDT</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td>Địa chỉ</td>
+                <td>:</td>
+                <td>@Model.DiaChi</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+
+

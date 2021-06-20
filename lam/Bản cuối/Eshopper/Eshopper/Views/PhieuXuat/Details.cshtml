@@ -72,7 +72,6 @@
                 <div class="total_area">
                     <ul>
                         <li>Ngày đặt <span> @ViewBag.ngaydat </span></li>
-                        <li>Ngày ship <span>@ViewBag.ngayship </span></li>
                         <li>
                             Trạng thái đơn <span>
                                 @if (ViewBag.ngayship == null)
@@ -81,11 +80,11 @@
                                 }
                                 else if (ViewBag.ngayship > DateTime.Now)
                                 {
-                                    <b> Đang giao hàng </b>
+                                    <b> Đã giao hàng </b>
                                 }
                                 else
                                 {
-                                    <b> Đã giao </b>
+                                   <b> Đang giao hàng </b>
                                 }
                             </span>
                         </li>
